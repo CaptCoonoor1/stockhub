@@ -1,0 +1,15 @@
+$primary: #1EC9AC !default
+
+//responsive
+$tablet: 769px !default
+$desktop: 1000px !default
+$widescreen: 1192px !default
+$fullhd: 1284px !default
+
+=desktop
+  @media screen and (min-width: $desktop)
+    @content
+
+=desktop-only
+  @media screen and (min-width: $desktop) and (max-width: $widescreen - 1px)
+    @content
