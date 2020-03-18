@@ -14,7 +14,7 @@ const accessAV = av({key: avKey});
 // Routes
 const register = require('./routes/registerUser');
 const login = require('./routes/loginUser');
-
+const stocks = require('./routes/stockOperations');
 
 const app = express();
 
@@ -44,6 +44,8 @@ app.use((req, res, next) =>
 // Use routes
 app.use('/', register);
 app.use('/', login);
+app.use('/', stocks);
+
 
 // Currently responds to a POST with the symbol; returns intraday stock data
 // app.post('/', (req, res) =>

@@ -12,7 +12,7 @@ const validateInput = require('../validation/login');
 const User = require('../models/User');
 
 // Login if user exists, else bad request
-router.post('/routes/loginUser', (req, res) =>
+router.post('/loginUser', (req, res) =>
 {
 	const {error, isValid} = validateInput(req.body);
 
@@ -20,7 +20,7 @@ router.post('/routes/loginUser', (req, res) =>
 	if (!isValid)
 		return res.status(400).json(errors);
 
-	// Looks for the user, if DNE then responds with bad
+	// Looks for the user, if DNE then responds with bad response
 	// If user does 
 	User.findOne({email: req.body.email})
 		.then(user => 
@@ -35,8 +35,7 @@ router.post('/routes/loginUser', (req, res) =>
 				{
 					const payload = 
 					{
-						id: user.id,
-						name: user.name
+						id: user.id
 					};
 
 					// Sign token
