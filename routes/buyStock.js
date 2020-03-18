@@ -18,8 +18,7 @@ const router = express.Router();
 // Input validation
 const validateInput = require('../validation/stock');
 
-
-// ticker, ASSUME MARKET ORDER, jwt
+// ticker and quantity required; ASSUMES MARKET ORDER
 router.post('/stock/buy', (req, res) => {
 	const {errors, isValid} = validateInput(req.body);
 
@@ -46,8 +45,6 @@ router.post('/stock/buy', (req, res) => {
 									{
 										cash = cash - (sharePrice * quantity);
 										user.cash = cash;
-
-										console.log(data);
 
 										// Checks if the user already owns shares:
 										// if yes -> calculates new average price and new amount of shares
