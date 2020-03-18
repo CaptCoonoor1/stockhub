@@ -15,6 +15,7 @@ const accessAV = av({key: avKey});
 const register = require('./routes/registerUser');
 const login = require('./routes/loginUser');
 const buyStock = require('./routes/buyStock');
+const sellStock = require('./routes/sellStock');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use((req, res, next) =>
 app.use('/', register);
 app.use('/', login);
 app.use('/', buyStock);
+app.use('/', sellStock);
 
 // Connect to database
 mongoose
