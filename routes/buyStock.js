@@ -19,7 +19,7 @@ const router = express.Router();
 const validateInput = require('../validation/stock');
 
 // ticker and quantity required; ASSUMES MARKET ORDER
-router.post('/stock/buy', (req, res) => {
+router.post('/stock/buy_market', (req, res) => {
 	const {errors, isValid} = validateInput(req.body);
 
 	if (!isValid)
@@ -93,5 +93,7 @@ router.post('/stock/buy', (req, res) => {
 						.catch((err) => console.log(err));
 
 });
+
+// Create limit order
 
 module.exports = router;
