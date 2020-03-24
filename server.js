@@ -16,6 +16,7 @@ const register = require('./routes/registerUser');
 const login = require('./routes/loginUser');
 const buyStock = require('./routes/buyStock');
 const sellStock = require('./routes/sellStock');
+const getPortfolio = require('./routes/getPortfolio');
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use('/', register);
 app.use('/', login);
 app.use('/', buyStock);
 app.use('/', sellStock);
+app.use('/', getPortfolio);
 
 // Connect to database
 mongoose
