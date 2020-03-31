@@ -3,10 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import axios from 'axios'
-import router from './router'
+import router from './router/index'
 import store from './store'
 
-axios.defaults.baseURL = 'https://vue-update.firebaseio.com'
+axios.defaults.baseURL = 'https://stockhub-vue.firebaseio.com'
 
 axios.defaults.headers.get['Accepts'] = 'application/json'
 

@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app
+  ">
     <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
 
@@ -15,20 +16,21 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <router-link to="/">Home</router-link>
-      
+          <router-link to="/portfolio">My Account</router-link>
           <li v-if="auth">
-            <router-link to="/dashboard">Dashboard</router-link>
+            <router-link to="/dashboard">dashboard</router-link>
           </li>
           </div>
           <div class="buttons">
-          <li v-if="auth">
-            <button @click="onLogout" class="button is-primary is-active">Logout</button>
-          </li>
+
           <li v-if="!auth">
           <router-link to="/signup" class="button is-primary"><Strong>Sign up</Strong></router-link>
         </li>
         <li v-if="!auth">
           <router-link to="/login" class="button is-light">Login</router-link>
+        </li>
+        <li v-if="auth">
+          <router-link @click="onLogout" class="button is-light">Logout</router-link>
         </li>
         </div>
 
@@ -56,25 +58,23 @@
 </template>
 
 <script>
-  export default {
-    name: 'App',
-
-    computed: {
-      auth(){
-        return this.$store.getters.isAuthenticated
-      }
-    },
-    methods:{
-      onLogout(){
-        this.$store.dispatch('logout')
-      }
+export default {
+  computed: {
+    auth(){
+      return this.$store.getters.isAuthenticated
+    }
+  },
+  methods:{
+    onLogout(){
+      this.$store.dispatch('logout')
     }
   }
+}
 </script>
 
 <style lang="sass">
-@import '../node_modules/bulma/bulma.sass'
-@import 'mq'
+@import 'node_modules/bulma/bulma.sass'
+@import '../../mq'
 
 .navbar
   background-color: #383838
@@ -100,12 +100,6 @@
     color: #1EECAD
 .footer p
   color: white
-.logout
-  background-color: #1EECAD
-  border: none
-  font: inherit
-  color: #383838
-  cursor: pointer
-  margin-bottom: 0.5rem
+
 
 </style>

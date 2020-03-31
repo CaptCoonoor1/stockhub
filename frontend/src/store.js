@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import axios from './axios-auth'
 import globalAxios from 'axios'
 
-import router from './router'
+import router from './router/index'
 
 Vue.use(Vuex)
 
@@ -33,7 +33,7 @@ export default new Vuex.Store({
       }, expirationTime * 1000)
     },
     signup ({commit, dispatch}, authData) {
-      axios.post('/signupNewUser?key=AIzaSyCXlVPPWknVGhfc60mt7Jkv0Xzrho7_mwc', {
+      axios.post('/accounts:signUp?key=AIzaSyDR0JDNN3t6zkp3VoICH0QGDIKH6F2aGI4', {
         email: authData.email,
         password: authData.password,
         returnSecureToken: true
@@ -55,7 +55,7 @@ export default new Vuex.Store({
         .catch(error => console.log(error))
     },
     login ({commit, dispatch}, authData) {
-      axios.post('/verifyPassword?key=AIzaSyCXlVPPWknVGhfc60mt7Jkv0Xzrho7_mwc', {
+      axios.post('/accounts:signInWithPassword?key=AIzaSyDR0JDNN3t6zkp3VoICH0QGDIKH6F2aGI4', {
         email: authData.email,
         password: authData.password,
         returnSecureToken: true
@@ -74,6 +74,7 @@ export default new Vuex.Store({
           dispatch('setLogoutTimer', res.data.expiresIn)
         })
         .catch(error => console.log(error))
+
     },
     tryAutoLogin ({commit}) {
       const token = localStorage.getItem('token')
@@ -96,7 +97,7 @@ export default new Vuex.Store({
       localStorage.removeItem('expirationDate')
       localStorage.removeItem('token')
       localStorage.removeItem('userId')
-      router.replace('/signin')
+      router.replace('/login')
     },
     storeUser ({commit, state}, userData) {
       if (!state.idToken) {

@@ -12,7 +12,7 @@
         </h2>
       </div>
       <div class="buttons">
-        <button class="button is-medium is-primary is-rounded">Join now</button>
+        <router-link to="/login" class="button is-medium is-primary is-rounded">Join now</router-link>
       </div>
       </a>
     </div>

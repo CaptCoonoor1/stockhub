@@ -19,13 +19,16 @@
         <div class="submit">
           <div class="buttons">
             <button class="button is-medium is-primary is-rounded">Submit</button>
-          </div>        </div>
+            <router-link to="/dashboard" class="button is-active">Go to My Account</router-link>
+          </div>
+         </div>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+
   export default {
     data () {
       return {
@@ -40,7 +43,8 @@
           password: this.password,
         }
         console.log(formData)
-        this.$store.dispatch('login', {email: formData.email, password: formData.password})
+       this.$store.dispatch('login', {email: formData.email, password: formData.password})
+
       }
     }
   }
@@ -79,7 +83,7 @@
 
   .input input:focus {
     outline: none;
-    border: 1px solid #521751;
+    border: 1px solid #1EECAD;
     background-color: #eee;
   }
 
@@ -87,7 +91,7 @@
 
   .submit button:hover,
   .submit button:active {
-    background-color: #521751;
+    background-color: #1EECAD;
     color: white;
   }
 

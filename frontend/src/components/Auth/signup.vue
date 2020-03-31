@@ -39,23 +39,7 @@
             <option value="germany">Germany</option>
           </select>
         </div>
-        <div class="hobbies">
-          <h3>Add some Hobbies</h3>
-          <button @click="onAddHobby" type="button">Add Hobby</button>
-          <div class="hobby-list">
-            <div
-                    class="input"
-                    v-for="(hobbyInput, index) in hobbyInputs"
-                    :key="hobbyInput.id">
-              <label :for="hobbyInput.id">Hobby #{{ index }}</label>
-              <input
-                      type="text"
-                      :id="hobbyInput.id"
-                      v-model="hobbyInput.value">
-              <button @click="onDeleteHobby(hobbyInput.id)" type="button">X</button>
-            </div>
-          </div>
-        </div>
+
         <div class="input inline">
           <input type="checkbox" id="terms" v-model="terms">
           <label for="terms">Accept Terms of Use</label>
@@ -71,7 +55,6 @@
 </template>
 
 <script>
-  import axios from 'axios';
 
   export default {
     data () {
@@ -103,12 +86,18 @@
           password: this.password,
           confirmPassword: this.confirmPassword,
           country: this.country,
-          hobbies: this.hobbyInputs.map(hobby => hobby.value),
           terms: this.terms
         }
-
         console.log(formData)
-        this.$store.dispatch('signup', formData)
+      //  axios.post('/accounts:signUp?key=AIzaSyDR0JDNN3t6zkp3VoICH0QGDIKH6F2aGI4',
+        //          {
+          //          email: formData.email,
+            //        password: formData.password,
+              //      returnSecureToken: true
+                //  })
+          //.then(res=>console.log(res))
+          //.catch(error => console.log(error))
+          this.$store.dispatch('signup', formData)
       }
     }
   }
@@ -154,7 +143,7 @@
   }
 .input input:focus {
     outline: none;
-    border: 1px solid #521751;
+    border: 1px solid #1EECAD;
     background-color: #eee;
   }
 .input select {
