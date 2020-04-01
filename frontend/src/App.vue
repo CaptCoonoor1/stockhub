@@ -1,40 +1,39 @@
 <template>
   <div id="app">
     <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+      <div class="navbar-brand"></div>
 
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        <router-link to="/">StockHub</router-link>
-      </a>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <router-link to="/">Home</router-link>
-      
-          <li v-if="auth">
-            <router-link to="/dashboard">Dashboard</router-link>
-          </li>
-          </div>
-          <div class="buttons">
-          <li v-if="auth">
-            <button @click="onLogout" class="button is-primary is-active">Logout</button>
-          </li>
-          <li v-if="!auth">
-          <router-link to="/signup" class="button is-primary"><Strong>Sign up</Strong></router-link>
-        </li>
-        <li v-if="!auth">
-          <router-link to="/login" class="button is-light">Login</router-link>
-        </li>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            <router-link to="/">StockSim</router-link>
+          </a>
         </div>
 
-    </div>
-  </div>
-</nav>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <router-link to="/">Home</router-link>
+
+            <li v-if="auth">
+              <router-link to="/dashboard">Dashboard</router-link>
+            </li>
+          </div>
+          <div class="buttons">
+            <li v-if="auth">
+              <button @click="onLogout" class="button is-primary is-active">Logout</button>
+            </li>
+            <li v-if="!auth">
+              <router-link to="/signup" class="button is-primary">
+                <Strong>Sign up</Strong>
+              </router-link>
+            </li>
+            <li v-if="!auth">
+              <router-link to="/login" class="button is-light">Login</router-link>
+            </li>
+          </div>
+        </div>
+      </div>
+    </nav>
     <router-view></router-view>
 
     <footer class="footer">
@@ -42,13 +41,13 @@
         <div class="content">
           <div class="content has-text-centered">
             <p>
-             <strong>StockHubb</strong> by Group 18 from <a href="https://catalog.ucf.edu/preview_course_nopop.php?catoid=3&coid=6690">UCF COP4331</a>
+              <strong>StockSim</strong> by Group 18 from
+              <a
+                href="https://catalog.ucf.edu/preview_course_nopop.php?catoid=3&coid=6690"
+              >UCF COP4331</a>
             </p>
-            <p>
-              Copyrights @ Group18 Spring 2020
-            </p>
+            <p>Copyrights @ Group18 Spring 2020</p>
           </div>
-
         </div>
       </div>
     </footer>
@@ -56,20 +55,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'App',
+export default {
+  name: "App",
 
-    computed: {
-      auth(){
-        return this.$store.getters.isAuthenticated
-      }
-    },
-    methods:{
-      onLogout(){
-        this.$store.dispatch('logout')
-      }
+  computed: {
+    auth() {
+      return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods: {
+    onLogout() {
+      this.$store.dispatch("logout");
     }
   }
+};
 </script>
 
 <style lang="sass">
@@ -97,7 +96,7 @@
   background-color: #383838
 
 .footer strong
-    color: #1EECAD
+  color: #1EECAD
 .footer p
   color: white
 .logout
@@ -107,5 +106,4 @@
   color: #383838
   cursor: pointer
   margin-bottom: 0.5rem
-
 </style>
