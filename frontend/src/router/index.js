@@ -8,6 +8,7 @@ import Stocks from '@/components/stocks/Stocks.vue';
 import Signup from '@/components/Auth/signup.vue';
 import DashboardPage from '@/components/dashboard/dashboard.vue';
 import Login from '@/components/Auth/login.vue';
+import Watchlist from '../components/watchlist/watchlist.vue';
 
 Vue.use(Router);
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
 		path: '/stocks',
 		name: 'Stocks',
 		component: Stocks,
+	},
+	{
+		path: '/watchlist',
+		name: 'Watchlist',
+		component: Watchlist,
 	},
 	{
 		path: '/signup',
