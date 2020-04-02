@@ -37,8 +37,7 @@
 			</div>
 		</nav>
 		<router-view></router-view>
-
-		<app-footer></app-footer>
+		<app-footer style="margin-top: 400px"></app-footer>
 	</div>
 </template>
 
