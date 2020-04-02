@@ -70,6 +70,10 @@ export default {
 			this.$store.dispatch('logout');
 		},
 	},
+	created() {
+		console.log('created');
+		this.$store.dispatch('initStocks');
+	},
 };
 </script>
 

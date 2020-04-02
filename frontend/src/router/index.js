@@ -10,7 +10,6 @@ import DashboardPage from '@/components/dashboard/dashboard.vue';
 import Login from '@/components/Auth/login.vue';
 
 Vue.use(Router);
-
 const routes = [
 	{
 		path: '/',

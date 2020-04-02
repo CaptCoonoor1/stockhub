@@ -21,6 +21,10 @@
 		"mongoose": "^5.9.3",
 		"passport": "^0.4.1",
 		"passport-jwt": "^4.0.0",
+		"portal-vue": "^2.1.7",
 		"validator": "^12.2.0"
+	},
+	"devDependencies": {
+		"babel-plugin-transform-object-rest-spread": "^6.26.0"
 	}
 }
