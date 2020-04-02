@@ -38,28 +38,17 @@
 		</nav>
 		<router-view></router-view>
 
-		<footer class="footer">
-			<div class="container">
-				<div class="content">
-					<div class="content has-text-centered">
-						<p>
-							<strong>StockSim</strong> by Group 18 from
-							<a href="https://catalog.ucf.edu/preview_course_nopop.php?catoid=3&coid=6690"
-								>UCF COP4331</a
-							>
-						</p>
-						<p>Copyrights @ Group18 Spring 2020</p>
-					</div>
-				</div>
-			</div>
-		</footer>
+		<app-footer></app-footer>
 	</div>
 </template>
 
 <script>
+import Footer from './components/footer/Footer.vue';
 export default {
 	name: 'App',
-
+	components: {
+		appFooter: Footer,
+	},
 	computed: {
 		auth() {
 			return this.$store.getters.isAuthenticated;
