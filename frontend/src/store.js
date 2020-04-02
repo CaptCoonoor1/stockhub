@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import axios from './axios-auth';
 import globalAxios from 'axios';
 import stocks from './components/store/modules/stocks';
+import portfolio from './components/store/modules/portfolio';
 import router from './router/index';
 
 Vue.use(Vuex);
@@ -140,5 +141,6 @@ export default new Vuex.Store({
 	},
 	modules: {
 		stocks: stocks,
+		portfolio: portfolio,
 	},
 });

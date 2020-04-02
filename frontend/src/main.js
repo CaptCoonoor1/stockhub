@@ -6,6 +6,10 @@ import axios from 'axios';
 import router from './router/index';
 import store from './store';
 
+Vue.filter('currency', value => {
+	return '$' + value.toLocaleString();
+});
+
 axios.defaults.baseURL = 'https://stockhub-vue.firebaseio.com';
 
 axios.defaults.headers.get['Accepts'] = 'application/json';

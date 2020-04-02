@@ -13,7 +13,7 @@ const mutations = {
 
 const actions = {
 	buyStock: ({ commit }, order) => {
-		commit();
+		commit('BUY_STOCK', order);
 	},
 
 	// Get info from server here
