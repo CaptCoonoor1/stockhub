@@ -18,6 +18,7 @@ const buyStock = require('./routes/buyStock');
 const sellStock = require('./routes/sellStock');
 const getPortfolio = require('./routes/getPortfolio');
 const addWatchlist = require('./routes/addWatchlist');
+const deleteWatchlist = require('./routes/deleteWatchlist');
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use('/', buyStock);
 app.use('/', sellStock);
 app.use('/', getPortfolio);
 app.use('/', addWatchlist);
+app.use('/', deleteWatchlist);
 
 // Connect to database
 mongoose

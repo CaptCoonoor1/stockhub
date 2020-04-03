@@ -17,7 +17,7 @@ const accessAV = av({key: keys.alphaVantage});
 const router = express.Router();
 
 router.post('/watchlist/add', async (req, res) => {
-	const {errors, isValid} = validateInput(req);
+	const {errors, isValid} = validateInput(req.body);
 	const userID = String(decoder(req.body.token).id);
 
 	if (!isValid)

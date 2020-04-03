@@ -13,8 +13,15 @@ const validateInput = require('../validation/watchlist');
 const router = express.Router();
 
 router.post('/watchlist/delete', (req, res) => {
-	const {error, isValid} = validateInput(req);
+	const {errors, isValid} = validateInput(req.body);
+	const userID = String(decoder(req.body.token).id);
 
 	if (!isValid)
 		return res.status(400).json(errors);
+
+	WLStock.findOneAndDelete({watcherID: userID, Ticker: req.body.ticker}, (err, watchlist) => {
+		res.json("Stock removed from watchlist");
+	});
 });
+
+module.exports = router;
