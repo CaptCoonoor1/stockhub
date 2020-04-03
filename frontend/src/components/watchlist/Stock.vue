@@ -13,7 +13,7 @@
         </div>
         <div class="pull-right">
           <button class="btn btn-danger" @click="removeStockFromWatchList">Remove</button>
-          <button class="btn btn-success" @click="buyStock">BUY</button>
+          <button class="btn btn-success" @click="buyStock">Buy</button>
         </div>
       </div>
     </div>
