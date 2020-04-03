@@ -20,7 +20,7 @@
         <div class="pull-right">
           <button
             class="btn btn-info"
-            @click="addStock"
+            @click="addStockToWatchlist"
             :disabled="stockInWatchlist"
           >{{stockInWatchlist ? 'Added' : 'Add to Watchlist'}}</button>
           <button
@@ -67,7 +67,7 @@ export default {
       this.$store.dispatch("buyStock", order);
       this.quantity = 0;
     },
-    addStock() {
+    addStockToWatchlist() {
       console.log(this);
       const order = {
         stockId: this.stock.id,

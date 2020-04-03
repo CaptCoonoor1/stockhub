@@ -35,15 +35,26 @@ const mutations = {
 		} else {
 			state.watchlist.push({
 				id: stockId,
+				stockPrice: stockPrice,
 				quantity: quantity,
 			});
 		}
+	},
+	REMOVE_FROM_WATCHLIST(state, { stockId, quantity, stockPrice }) {
+		const record = state.watchlist.find(element => element.id == stockId);
+		const index = state.watchlist.indexOf(record);
+		state.watchlist.splice(index, 1);
+
+		console.log(state.watchlist);
 	},
 };
 
 const actions = {
 	sellStock({ commit }, order) {
 		commit('SELL_STOCK', order);
+	},
+	remove({ commit }, stock) {
+		commit('REMOVE_FROM_WATCHLIST', stock);
 	},
 };
 
@@ -62,12 +73,14 @@ const getters = {
 	watchlist(state, getters) {
 		return state.watchlist.map(stock => {
 			const record = getters.stocks.find(element => element.id == stock.id);
-			return {
-				id: stock.id,
-				quantity: stock.quantity,
-				name: record.name,
-				price: record.price,
-			};
+			if (record) {
+				return {
+					id: stock.id,
+					quantity: stock.quantity,
+					name: record.name,
+					price: record.price,
+				};
+			} else return;
 		});
 	},
 	funds(state) {

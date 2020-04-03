@@ -12,7 +12,7 @@
           <input type="number" class="form-control" placeholder="quantity" v-model="quantity" />
         </div>
         <div class="pull-right">
-          <button class="btn btn-danger">Remove</button>
+          <button class="btn btn-danger" @click="removeStockFromWatchList">Remove</button>
           <button class="btn btn-success" @click="buyStock">BUY</button>
         </div>
       </div>
@@ -38,6 +38,15 @@ export default {
       this.$store.dispatch("buyStock", order);
       console.log(order);
       this.quantity = 0;
+    },
+    removeStockFromWatchList() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity
+      };
+      console.log(order);
+      this.$store.dispatch("remove", order);
     }
   }
 };

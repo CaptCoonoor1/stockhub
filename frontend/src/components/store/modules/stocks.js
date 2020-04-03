@@ -2,7 +2,7 @@ import stocks from '../../../data/stocks';
 
 const state = {
 	stocks: [],
-	watchlist: [],
+	// watchlist: [],
 };
 
 const mutations = {
