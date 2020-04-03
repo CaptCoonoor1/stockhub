@@ -19,6 +19,11 @@
         </div>
         <div class="pull-right">
           <button
+            class="btn btn-info"
+            @click="addStock"
+            :disabled="stockInWatchlist"
+          >{{stockInWatchlist ? 'Added' : 'Add to Watchlist'}}</button>
+          <button
             class="btn btn-success"
             @click="buyStock"
             :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(parseInt(quantity))"
@@ -43,6 +48,12 @@ export default {
     },
     insufficientFunds() {
       return this.quantity * this.stock.price > this.funds;
+    },
+    watchlist() {
+      return this.$store.getters.watchlist;
+    },
+    stockInWatchlist() {
+      return this.watchlist.find(el => el.id == this.stock.id) ? true : false;
     }
   },
   methods: {
@@ -52,9 +63,19 @@ export default {
         stockPrice: this.stock.price,
         quantity: this.quantity
       };
-      console.log(order);
+      // console.log(order);
       this.$store.dispatch("buyStock", order);
       this.quantity = 0;
+    },
+    addStock() {
+      console.log(this);
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity
+      };
+      // console.log(order);
+      this.$store.dispatch("addStock", order);
     }
   }
 };

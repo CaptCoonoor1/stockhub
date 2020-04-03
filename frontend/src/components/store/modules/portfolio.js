@@ -1,6 +1,7 @@
 const state = {
 	funds: 10000,
 	stocks: [],
+	watchlist: [],
 };
 
 const mutations = {
@@ -26,6 +27,18 @@ const mutations = {
 		}
 		state.funds += stockPrice * quantity;
 	},
+	ADD_STOCK(state, { stockId, quantity, stockPrice }) {
+		const record = state.watchlist.find(element => element.id == stockId);
+
+		if (record) {
+			alert('Already added!');
+		} else {
+			state.watchlist.push({
+				id: stockId,
+				quantity: quantity,
+			});
+		}
+	},
 };
 
 const actions = {
@@ -37,6 +50,17 @@ const actions = {
 const getters = {
 	stockPortfolio(state, getters) {
 		return state.stocks.map(stock => {
+			const record = getters.stocks.find(element => element.id == stock.id);
+			return {
+				id: stock.id,
+				quantity: stock.quantity,
+				name: record.name,
+				price: record.price,
+			};
+		});
+	},
+	watchlist(state, getters) {
+		return state.watchlist.map(stock => {
 			const record = getters.stocks.find(element => element.id == stock.id);
 			return {
 				id: stock.id,

@@ -5,7 +5,7 @@ import globalAxios from 'axios';
 import stocks from './components/store/modules/stocks';
 import portfolio from './components/store/modules/portfolio';
 import router from './router/index';
-
+import watchlist from './components/store/modules/watchlist';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -142,5 +142,6 @@ export default new Vuex.Store({
 	modules: {
 		stocks: stocks,
 		portfolio: portfolio,
+		watchlist: watchlist,
 	},
 });

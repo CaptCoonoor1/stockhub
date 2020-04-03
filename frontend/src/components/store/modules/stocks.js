@@ -2,6 +2,7 @@ import stocks from '../../../data/stocks';
 
 const state = {
 	stocks: [],
+	watchlist: [],
 };
 
 const mutations = {
@@ -23,6 +24,10 @@ const actions = {
 
 	randomizeStocks: ({ commit }) => {
 		commit('RND_STOCKS');
+	},
+
+	addStock: ({ commit }, order) => {
+		commit('ADD_STOCK', order);
 	},
 };
 

@@ -12,6 +12,7 @@
           <input type="number" class="form-control" placeholder="quantity" v-model="quantity" />
         </div>
         <div class="pull-right">
+          <button class="btn btn-danger">Remove</button>
           <button class="btn btn-success" @click="buyStock">BUY</button>
         </div>
       </div>
