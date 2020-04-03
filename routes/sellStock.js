@@ -55,6 +55,13 @@ router.post('/stock/sell_market', async (req, res) => {
 						user.save();
 					});
 
+				if (stock.Quantity == 0)
+				{
+					Stock.findByIdAndDelete(stock.id, (err, del_stock) => {
+						console.log('Delete Document: Quantity < 0');
+					});
+				}
+
 				res.json({sold: true});
 			}
 		}

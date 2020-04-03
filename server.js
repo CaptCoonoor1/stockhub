@@ -17,6 +17,7 @@ const login = require('./routes/loginUser');
 const buyStock = require('./routes/buyStock');
 const sellStock = require('./routes/sellStock');
 const getPortfolio = require('./routes/getPortfolio');
+const addWatchlist = require('./routes/addWatchlist');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use('/', login);
 app.use('/', buyStock);
 app.use('/', sellStock);
 app.use('/', getPortfolio);
+app.use('/', addWatchlist);
 
 // Connect to database
 mongoose
