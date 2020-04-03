@@ -49,7 +49,7 @@ export default {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stock.price,
-        quantity: this.stock.quantity
+        quantity: this.quantity
       };
       this.placeSellOrder(order);
       this.quantity = 0;
