@@ -5,16 +5,15 @@ const decoder = require('jwt-decode');
 const keys = require('../config/keys');
 
 // Import models
-const Stock = require('../models/PortfolioStock');
-const User = require('../models/User');
+const WLStock = require('../models/WatchlistStock');
 
 const router = express.Router();
 
-router.post('/portfolio/get', (req, res) => {
+router.post('/watchlist/get', (req, res) => {
 	const userID = String(decoder(req.body.token).id);
 
-	Stock.find({buyerID: userID})
-		.then(stock => res.status(200).json(stock))
+	WLStock.find({buyerID: userID})
+		.then(WLStock => res.status(200).json(WLStock))
 		.catch((err) => console.log(err));
 });
 
