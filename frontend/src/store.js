@@ -35,12 +35,13 @@ export default new Vuex.Store({
 		},
 		signup({ commit, dispatch }, authData) {
 			axios
-				.post('/accounts:signUp?key=AIzaSyDR0JDNN3t6zkp3VoICH0QGDIKH6F2aGI4', {
+				.post('/register', {
+					name: 'John',
 					email: authData.email,
 					password: authData.password,
 					returnSecureToken: true,
 				})
-				.then(res => {
+				.then((res) => {
 					console.log(res);
 					commit('authUser', {
 						token: res.data.idToken,
@@ -54,7 +55,7 @@ export default new Vuex.Store({
 					dispatch('storeUser', authData);
 					dispatch('setLogoutTimer', res.data.expiresIn);
 				})
-				.catch(error => console.log(error));
+				.catch((error) => console.log(error));
 		},
 		login({ commit, dispatch }, authData) {
 			axios
@@ -63,7 +64,7 @@ export default new Vuex.Store({
 					password: authData.password,
 					returnSecureToken: true,
 				})
-				.then(res => {
+				.then((res) => {
 					console.log(res);
 					const now = new Date();
 					const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
@@ -76,7 +77,7 @@ export default new Vuex.Store({
 					});
 					dispatch('setLogoutTimer', res.data.expiresIn);
 				})
-				.catch(error => console.log(error));
+				.catch((error) => console.log(error));
 		},
 		tryAutoLogin({ commit }) {
 			const token = localStorage.getItem('token');
@@ -107,8 +108,8 @@ export default new Vuex.Store({
 			}
 			globalAxios
 				.post('/users.json' + '?auth=' + state.idToken, userData)
-				.then(res => console.log(res))
-				.catch(error => console.log(error));
+				.then((res) => console.log(res))
+				.catch((error) => console.log(error));
 		},
 		fetchUser({ commit, state }) {
 			if (!state.idToken) {
@@ -116,7 +117,7 @@ export default new Vuex.Store({
 			}
 			globalAxios
 				.get('/users.json' + '?auth=' + state.idToken)
-				.then(res => {
+				.then((res) => {
 					console.log(res);
 					const data = res.data;
 					const users = [];
@@ -128,7 +129,7 @@ export default new Vuex.Store({
 					console.log(users);
 					commit('storeUser', users[0]);
 				})
-				.catch(error => console.log(error));
+				.catch((error) => console.log(error));
 		},
 	},
 	getters: {

@@ -13,8 +13,8 @@ const router = express.Router();
 router.post('/portfolio/get', (req, res) => {
 	const userID = String(decoder(req.body.token).id);
 
-	Stock.find({buyerID: userID})
-		.then(stock => res.status(200).json(stock))
+	Stock.find({ buyerID: userID })
+		.then((stock) => res.status(200).json(stock))
 		.catch((err) => console.log(err));
 });
 
