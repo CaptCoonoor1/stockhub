@@ -12,7 +12,7 @@ const validateInput = require('../validation/login');
 const User = require('../models/User');
 
 // Login if user exists, else bad request
-router.post('/loginUser', (req, res) =>
+router.post('/login', (req, res) =>
 {
 	const {error, isValid} = validateInput(req.body);
 
