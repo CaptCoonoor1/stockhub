@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const decoder = require('jwt-decode');
+const cors = require('cors');
 const keys = require('../config/keys');
 
 // Import models
@@ -16,7 +17,7 @@ const accessAV = av({key: keys.alphaVantage});
 
 const router = express.Router();
 
-router.post('/watchlist/add', async (req, res) => {
+router.post('/watchlist/add', cors(), async (req, res) => {
 	const {errors, isValid} = validateInput(req.body);
 	const userID = String(decoder(req.body.token).id);
 

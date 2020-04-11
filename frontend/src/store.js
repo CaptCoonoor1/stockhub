@@ -35,7 +35,7 @@ export default new Vuex.Store({
 		},
 		signup({ commit, dispatch }, authData) {
 			axios
-				.post('/register', {
+				.post('http://localhost:5000/register', {
 					name: 'John',
 					email: authData.email,
 					password: authData.password,

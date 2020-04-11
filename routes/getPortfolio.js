@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const decoder = require('jwt-decode');
+const cors = require('cors');
+
 const keys = require('../config/keys');
 
 // Import models
@@ -10,7 +12,7 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-router.post('/portfolio/get', (req, res) => {
+router.post('/portfolio/get', cors(), (req, res) => {
 	const userID = String(decoder(req.body.token).id);
 
 	Stock.find({ buyerID: userID })

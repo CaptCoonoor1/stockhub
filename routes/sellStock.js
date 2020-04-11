@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const decoder = require('jwt-decode');
+const cors = require('cors');
+
 const keys = require('../config/keys');
 
 // Import models
@@ -17,7 +19,7 @@ const router = express.Router()
 // Input validation
 const validateInput = require('../validation/stock');
 
-router.post('/stock/sell_market', async (req, res) => {
+router.post('/stock/sell_market', cors(), async (req, res) => {
 	const {errors, isValid} = validateInput(req.body);
 
 	if (!isValid)

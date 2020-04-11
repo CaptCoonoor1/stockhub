@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const decoder = require('jwt-decode');
+const cors = require('cors');
+
 const keys = require('../config/keys');
 
 // Import models
@@ -12,7 +14,7 @@ const validateInput = require('../validation/watchlist');
 
 const router = express.Router();
 
-router.post('/watchlist/delete', (req, res) => {
+router.post('/watchlist/delete', cors(), (req, res) => {
 	const {errors, isValid} = validateInput(req.body);
 	const userID = String(decoder(req.body.token).id);
 

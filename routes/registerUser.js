@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
+const cors = require('cors');
+
 const User = require('../models/User');
 
 const router = express.Router();
@@ -9,7 +11,8 @@ const router = express.Router();
 //Input validation
 const validateInput = require('../validation/register');
 
-router.post('/register', (req, res) =>
+
+router.post('/register', cors(), (req, res) =>
 {
 	const {errors, isValid} = validateInput(req.body);
 

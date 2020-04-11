@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const decoder = require('jwt-decode');
+const cors = require('cors');
+
 const keys = require('../config/keys');
 
 // Import models
@@ -19,7 +21,7 @@ const router = express.Router();
 const validateInput = require('../validation/stock');
 
 // ticker and quantity required; ASSUMES MARKET ORDER
-router.post('/stock/buy_market', (req, res) => {
+router.post('/stock/buy_market', cors(), (req, res) => {
 	const {errors, isValid} = validateInput(req.body);
 
 	if (!isValid)
