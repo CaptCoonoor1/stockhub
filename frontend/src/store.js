@@ -59,7 +59,7 @@ export default new Vuex.Store({
 		},
 		login({ commit, dispatch }, authData) {
 			axios
-				.post('/accounts:signInWithPassword?key=AIzaSyDR0JDNN3t6zkp3VoICH0QGDIKH6F2aGI4', {
+				.post('http://localhost:5000/login', {
 					email: authData.email,
 					password: authData.password,
 					returnSecureToken: true
@@ -67,7 +67,7 @@ export default new Vuex.Store({
 				.then(res => {
 					console.log(res);
 					const now = new Date();
-					const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+					const expirationDate = new Date(now.getTime() + res.data.expiresIn * 100000);
 					localStorage.setItem('token', res.data.idToken);
 					localStorage.setItem('userId', res.data.localId);
 					localStorage.setItem('expirationDate', expirationDate);
