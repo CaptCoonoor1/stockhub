@@ -13,13 +13,18 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <router-link to="/">Home</router-link>
-            <router-link to="/portfolio">Portfolio</router-link>
-            <router-link to="/stocks">Stocks</router-link>
-            <router-link to="/watchlist">Watchlist</router-link>
-
             <li v-if="auth">
-              <router-link to="/dashboard">Dashboard</router-link>
+            <router-link to="/portfolio">Portfolio</router-link>
             </li>
+            <li v-if="auth">
+            <router-link to="/stocks">Stocks</router-link>
+            </li>
+            <li v-if="auth">
+            <router-link to="/watchlist">Watchlist</router-link>
+            </li>
+            <!--li v-if="auth">
+              <router-link to="/dashboard">Dashboard</router-link>
+            </li-->
           </div>
           <div class="buttons">
             <li v-if="auth">
@@ -72,7 +77,6 @@ export default {
 
 .navbar
   background-color: #383838
-
 .navbar-start a
   color: #1EECAD
   font-weight: bold

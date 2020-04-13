@@ -58,7 +58,7 @@ export default {
 .hero
   background: url(../assets/hero.jpg)
   background-size: cover
-  margin-top: -1rem
+  margin-top: -2rem
 
   .title
     +desktop

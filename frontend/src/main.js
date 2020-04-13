@@ -6,19 +6,19 @@ import axios from 'axios';
 import router from './router/index';
 import store from './store';
 
-Vue.filter('currency', (value) => {
+Vue.filter('currency', value => {
 	return '$' + value.toLocaleString();
 });
 
-// axios.defaults.baseURL = 'https://stockhub-vue.firebaseio.com';
+axios.defaults.baseURL = 'https://stockhub-vue.firebaseio.com';
 
-// axios.defaults.headers.get['Accepts'] = 'application/json';
+axios.defaults.headers.get['Accepts'] = 'application/json';
 
-const reqInterceptor = axios.interceptors.request.use((config) => {
+const reqInterceptor = axios.interceptors.request.use(config => {
 	console.log('Request Interceptor', config);
 	return config;
 });
-const resInterceptor = axios.interceptors.response.use((res) => {
+const resInterceptor = axios.interceptors.response.use(res => {
 	console.log('Response Interceptor', res);
 	return res;
 });

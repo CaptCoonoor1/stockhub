@@ -1,7 +1,7 @@
 <template>
   <div id="dashboard">
-    <h1>That's the dashboard!</h1>
-    <p>You should only get here if you're authenticated!</p>
+    <h1>You're successful login!</h1>
+
     <p v-if="email">Your email address: {{ email }}</p>
   </div>
 </template>
@@ -15,13 +15,8 @@
         return !this.$store.getters.user ? false : this.$store.getters.user.email
       }
     },
-    //data(){
-      //return {
-        //email:''
-      //}
-    //},
     created () {
-      
+
         this.$store.dispatch('fetchUser')
     }
   }
@@ -33,6 +28,8 @@
   }
 
   p {
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: red;
   }
 </style>
