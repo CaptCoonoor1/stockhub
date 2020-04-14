@@ -1,6 +1,6 @@
 <template>
   <div style="margin-bottom: 520px">
-    <h1 style="margin-left: 30px">Your Available Funds: {{funds | currency}}</h1>
+    <h1 style="margin: 0 0 30px 30px">Your Available Funds: {{funds | currency}}</h1>
     <app-stock v-for="stock in watchlist" :stock="stock" :key="stock.id"></app-stock>
   </div>
 </template>
