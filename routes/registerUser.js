@@ -30,7 +30,7 @@ router.post('/register', cors(), (req, res) => {
 					name: req.body.name,
 					email: req.body.email,
 					password: req.body.password,
-					cash: 100000,
+					cash: 10000,
 				});
 
 				// Generate and hash the saved password
