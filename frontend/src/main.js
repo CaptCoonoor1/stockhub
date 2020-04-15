@@ -10,7 +10,7 @@ Vue.filter('currency', value => {
 	return '$' + value.toLocaleString();
 });
 
-axios.defaults.baseURL = 'https://stockhub-vue.firebaseio.com';
+axios.defaults.baseURL = 'https://localhost:5000';
 
 axios.defaults.headers.get['Accepts'] = 'application/json';
 
@@ -31,5 +31,5 @@ new Vue({
 	router,
 	store,
 	components: { App },
-	template: '<App/>',
+	template: '<App/>'
 });
