@@ -8,8 +8,8 @@ const state = {
 		high: 0,
 		low: 0,
 		change: 0,
-		changePercent: '0 %'
-	}
+		changePercent: '0 %',
+	},
 	// watchlist: [],
 };
 
@@ -20,7 +20,7 @@ const mutations = {
 	RND_STOCKS(state) {},
 	UPDATE_STOCK(state, curStock) {
 		state.currentStock = curStock;
-	}
+	},
 };
 
 const actions = {
@@ -42,30 +42,31 @@ const actions = {
 	},
 
 	updateCurrent: ({ commit }, ticker) => {
+		console.log(ticker);
 		axios
 			.post('/quote', {
-				ticker: ticker
+				ticker: ticker,
 			})
-			.then(res => {
+			.then((res) => {
 				console.log(res);
 				commit('UPDATE_STOCK', res);
 			})
-			.catch(error => console.log(error));
-	}
+			.catch((error) => console.log(error));
+	},
 };
 
 const getters = {
-	stocks: state => {
+	stocks: (state) => {
 		return state.stocks;
 	},
-	currentStock: state => {
+	currentStock: (state) => {
 		return state.currentStock;
-	}
+	},
 };
 
 export default {
 	state,
 	mutations,
 	actions,
-	getters
+	getters,
 };
