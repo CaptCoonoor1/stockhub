@@ -7,6 +7,7 @@
         </td>
         <input type="text" style="margin: 0 0 0 30px" placeholder="Ticker" v-model="ticker" />
         <button
+          :disabled="ticker == ''"
           class="btn btn-primary"
           style="margin: 0 0 2px 8px"
           @click="getQuote"
@@ -23,7 +24,6 @@
 import Stock from "./Stock.vue";
 import Card from "./Card.vue";
 import { mapGetters } from "vuex";
-import axios from "axios";
 export default {
   data() {
     return {
@@ -38,31 +38,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      stocks: "stocks"
+      stocks: "stocks",
+      currentStock: "currentStock"
     }),
     funds() {
       return this.$store.getters.funds;
-    },
-    currentStock() {
-      return this.ticker;
     }
-    // stocks() {
-    // 	return this.$store.getters.stocks;
-    // },
   },
   methods: {
     getQuote: function() {
-      console.log(this.currentStock);
-      axios
-        .post("/quote", {
-          ticker: this.ticker,
-
-          returnSecureToken: true
-        })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(error => console.log(error));
+      this.$store.dispatch("updateCurrent", this.ticker);
     }
   }
 };
