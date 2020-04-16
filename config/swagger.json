@@ -1,0 +1,127 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "StockSim",
+		"description": "Basic stock trading simulator. Developed for COP 4331C.",
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	},
+	"host": "localhost:5000",
+	"basePath": "",
+	"tags": {
+		"name": "StockOps",
+		"description": "Models used in StockSim"
+	},
+	"schemes": [
+		"http"
+	],
+	"consumes": [
+		"application/x-www-form-urlencoded"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/register": {
+			"post": {
+				"tags": ["StockOps"],
+				"summary": "Registers user",
+				"responses": {
+					"200": {
+						"descripton": "OK",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					},
+					"400": {
+						"description": "Error: User exists || Fields not entered properly"
+					}
+				}
+			}
+		},
+		"/login": {
+			"post": {
+				"tags": ["StockOps"],
+				"summary": "Logs user in, returns JWT",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"success": {
+									"type": "boolean"
+								},
+								"token": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Error: User DNE || Incorrect password"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"User": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"cash": {
+					"type": "number"
+				}
+			}
+		},
+		"PortfolioStock": {
+			"type": "object",
+			"properties": {
+				"Company": {
+					"type": "string"
+				},
+				"Ticker": {
+					"type": "string"
+				},
+				"AvgPrice": {
+					"type": "number"
+				},
+				"Quantity": {
+					"type": "number"
+				},
+				"BuyerID": {
+					"type": "string"
+				}
+			}
+		},
+		"WatchlistStock": {
+			"type": "object",
+			"properties": {
+				"Company": {
+					"type": "string"
+				},
+				"Ticker": {
+					"type": "string"
+				},
+				"Price": {
+					"type": "number"
+				},
+				"WatcherID": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

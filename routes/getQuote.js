@@ -7,7 +7,6 @@ const av = require('alphavantage');
 const keys = require('../config/keys');
 const accessAV = av({key: keys.alphaVantage});
 
-
 const router = express.Router();
 
 // POST request
@@ -15,6 +14,8 @@ const router = express.Router();
 // Returns: stock data
 router.post('/quote', cors(), async (req, res) => {
 	ticker = !isEmpty(req.body.ticker) ? req.body.ticker : "";
+
+	console.log("Searching for: " + ticker);
 
 	if (ticker == "")
 	{

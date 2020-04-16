@@ -4,6 +4,8 @@ const bp = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const cors = require('cors');
+const swagger = require('swagger-ui-express');
+const swagJson = require('./config/swagger.json');
 
 // Get and save required Keys
 const avKey = require('./config/keys').alphaVantage;
@@ -28,7 +30,6 @@ const app = express();
 app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());
 app.use(express.Router());
-app.use(cors());
 app.use(passport.initialize());
 
 require('./config/passport')(passport);
@@ -53,6 +54,10 @@ app.use('/', getPortfolio);
 app.use('/', addWatchlist);
 app.use('/', deleteWatchlist);
 app.use('/', quote);
+
+app.use('/swagger', swagger.serve, swagger.setup(swagJson));
+
+app.use(cors());
 
 // Connect to database
 mongoose
