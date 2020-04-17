@@ -27,6 +27,7 @@
 		"passport": "^0.4.1",
 		"passport-jwt": "^4.0.0",
 		"portal-vue": "^2.1.7",
+		"serve-static": "^1.14.1",
 		"swagger": "^0.7.5",
 		"swagger-ui-express": "^4.1.4",
 		"validator": "^12.2.0"

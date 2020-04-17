@@ -7,6 +7,7 @@ const cors = require('cors');
 const swagger = require('swagger-ui-express');
 const swagJson = require('./config/swagger.json');
 const path = require('path');
+const serveStatic = require('serve-static');
 
 // Get and save required Keys
 const avKey = require('./config/keys').alphaVantage;
@@ -71,10 +72,10 @@ mongoose
 
 const port = process.env.PORT || 5000;
 
-// app.get("*", (req, res) => {
-// 	res.sendFile(path.join(__dirname, "frontend", "index.html"));
-// });
+app.use('/', serveStatic(__dirname + "/frontend/dist"));
 
-app.use(serveStatic(__dirname + "frontend/dist"));
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "frontend", "/dist/index.html"));
+});
 
 app.listen(port, () => console.log(`listening on port: ${port}`));
