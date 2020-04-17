@@ -13,7 +13,11 @@
         </div>
         <div class="pull-right">
           <button class="btn btn-danger" @click="removeStockFromWatchList">Remove</button>
-          <button class="btn btn-success" @click="buyStock">Buy</button>
+          <button
+            class="btn btn-success"
+            :disabled="insufficientFunds || this.quantity <= 0 || !Number.isInteger(parseInt(quantity))"
+            @click="buyStock"
+          >{{ insufficientFunds ? 'Not Enough' : 'Buy' }}</button>
         </div>
       </div>
     </div>
@@ -27,6 +31,14 @@ export default {
     return {
       quantity: 0
     };
+  },
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    },
+    insufficientFunds() {
+      return this.quantity * this.stock.price > this.funds;
+    }
   },
   methods: {
     buyStock() {
