@@ -1,73 +1,74 @@
 <template>
-  <div id="app">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand"></div>
+	<div id="app">
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand"></div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item">
-            <router-link to="/">StockSim</router-link>
-          </a>
-        </div>
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start">
+					<a class="navbar-item">
+						<router-link to="/">StockSim</router-link>
+					</a>
+				</div>
 
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <router-link to="/">Home</router-link>
-            <li v-if="auth">
-            <router-link to="/portfolio">Portfolio</router-link>
-            </li>
-            <li v-if="auth">
-            <router-link to="/stocks">Stocks</router-link>
-            </li>
-            <li v-if="auth">
-            <router-link to="/watchlist">Watchlist</router-link>
-            </li>
-            <!--li v-if="auth">
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<router-link to="/">Home</router-link>
+						<li v-if="auth">
+							<router-link to="/portfolio">Portfolio</router-link>
+						</li>
+						<li v-if="auth">
+							<router-link to="/stocks">Stocks</router-link>
+						</li>
+						<li v-if="auth">
+							<router-link to="/watchlist">Watchlist</router-link>
+						</li>
+						<!--li v-if="auth">
               <router-link to="/dashboard">Dashboard</router-link>
             </li-->
-          </div>
-          <div class="buttons">
-            <li v-if="auth">
-              <button @click="onLogout" class="button is-primary is-active">Logout</button>
-            </li>
-            <li v-if="!auth">
-              <router-link to="/signup" class="button is-primary">
-                <Strong>Sign up</Strong>
-              </router-link>
-            </li>
-            <li v-if="!auth">
-              <router-link to="/login" class="button is-light">Login</router-link>
-            </li>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <router-view></router-view>
-    <app-footer></app-footer>
-  </div>
+					</div>
+					<div class="buttons">
+						<li v-if="auth">
+							<button @click="onLogout" class="button is-primary is-active">Logout</button>
+						</li>
+						<li v-if="!auth">
+							<router-link to="/signup" class="button is-primary">
+								<Strong>Sign up</Strong>
+							</router-link>
+						</li>
+						<li v-if="!auth">
+							<router-link to="/login" class="button is-light">Login</router-link>
+						</li>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<router-view></router-view>
+		<app-footer></app-footer>
+	</div>
 </template>
 
 <script>
-import Footer from "./components/footer/Footer.vue";
+import Footer from './components/footer/Footer.vue';
 export default {
-  name: "App",
-  components: {
-    appFooter: Footer
-  },
-  computed: {
-    auth() {
-      return this.$store.getters.isAuthenticated;
-    }
-  },
-  methods: {
-    onLogout() {
-      this.$store.dispatch("logout");
-    }
-  },
-  created() {
-    console.log("created");
-    this.$store.dispatch("initStocks");
-  }
+	name: 'App',
+	components: {
+		appFooter: Footer,
+	},
+	computed: {
+		auth() {
+			return this.$store.getters.isAuthenticated;
+		},
+	},
+	methods: {
+		onLogout() {
+			this.$store.dispatch('logout');
+		},
+	},
+	created() {
+		console.log('created');
+		this.$vToastify.success('easy-peasy');
+		this.$store.dispatch('initStocks');
+	},
 };
 </script>
 

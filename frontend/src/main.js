@@ -5,8 +5,13 @@ import App from './App';
 import axios from 'axios';
 import router from './router/index';
 import store from './store';
+import VueToastify from 'vue-toastify';
 
-Vue.filter('currency', value => {
+Vue.use(VueToastify, {
+	position: 'center-right',
+});
+
+Vue.filter('currency', (value) => {
 	return '$' + value.toLocaleString();
 });
 
@@ -14,11 +19,11 @@ axios.defaults.baseURL = 'https://localhost:5000';
 
 axios.defaults.headers.get['Accepts'] = 'application/json';
 
-const reqInterceptor = axios.interceptors.request.use(config => {
+const reqInterceptor = axios.interceptors.request.use((config) => {
 	console.log('Request Interceptor', config);
 	return config;
 });
-const resInterceptor = axios.interceptors.response.use(res => {
+const resInterceptor = axios.interceptors.response.use((res) => {
 	console.log('Response Interceptor', res);
 	return res;
 });
@@ -31,5 +36,5 @@ new Vue({
 	router,
 	store,
 	components: { App },
-	template: '<App/>'
+	template: '<App/>',
 });
