@@ -256,6 +256,12 @@
 			"post": {
 				"tags": ["StockOps"],
 				"summary": "Get quote of stock",
+				"parameters":{
+					"ticker": {
+						"type": "string",
+						"required": true
+					}
+				},
 				"responses": {
 					"200": {
 						"description": "OK",
