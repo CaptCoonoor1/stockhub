@@ -226,8 +226,62 @@
 					}
 				}
 			}
+		},
+		"/portfolio/get": {
+			"post": {
+				"tags": ["StockOps"],
+				"summary": "Get stock(s) in users portfolio",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/PortfolioStock"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"errors": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/quote": {
+			"post": {
+				"tags": ["StockOps"],
+				"summary": "Get quote of stock",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"StockInfo": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"errors": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-		
 	},
 	"definitions": {
 		"User": {
