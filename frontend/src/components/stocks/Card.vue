@@ -33,8 +33,8 @@
     <button
       class="btn btn-info"
       @click="addStockToWatchlist"
-      :disabled="false"
-    >{{ false ? 'Added' : 'Add to Watchlist' }}</button>
+      :disabled="stockInWatchlist"
+    >{{stockInWatchlist ? 'Added' : 'Add to Watchlist'}}</button>
   </div>
 </template>
 
@@ -55,14 +55,16 @@ export default {
       return this.quantity * this.stock.price > this.funds;
     },
     watchlist() {
-      return this.$store.getters.watchlist;
-    },
-    stockInWatchlist() {
-      return this.watchlist.find(el => el.id == this.stock.id) ? true : false;
+      return this.$store.getters.getWatchlist;
     },
     currentStock() {
       // Has properties ticker, price, high, low, change, changePercent
       return this.$store.getters.currentStock;
+    },
+    stockInWatchlist() {
+      return this.watchlist.find(el => el.ticker == this.currentStock.ticker)
+        ? true
+        : false;
     }
   },
   methods: {

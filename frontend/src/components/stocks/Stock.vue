@@ -53,7 +53,9 @@ export default {
       return this.$store.getters.watchlist;
     },
     stockInWatchlist() {
-      return this.watchlist.find(el => el.id == this.stock.id) ? true : false;
+      return this.watchlist.find(el => el.ticker == this.stock.ticker)
+        ? true
+        : false;
     }
   },
   methods: {
