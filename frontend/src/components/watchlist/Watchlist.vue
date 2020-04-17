@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      watchlist: "watchlist"
+      watchlist: "getWatchlist"
     }),
     funds() {
       return this.$store.getters.funds;

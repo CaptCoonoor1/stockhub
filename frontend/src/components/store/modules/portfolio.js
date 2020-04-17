@@ -31,16 +31,17 @@ const mutations = {
 		}
 		state.funds += price * quantity;
 	},
-	ADD_STOCK(state, { stockId, quantity, stockPrice }) {
-		const record = state.watchlist.find((element) => element.id == stockId);
-
+	ADD_STOCK(state, { ticker, price }) {
+		const record = state.watchlist.find((element) => element.ticker == ticker);
+		console.log('TICKER: ' + ticker);
+		console.log('Price; ' + price);
+		console.log(record);
 		if (record) {
 			alert('Already added!');
 		} else {
 			state.watchlist.push({
-				id: stockId,
-				stockPrice: stockPrice,
-				quantity: quantity,
+				ticker: ticker,
+				price: price,
 			});
 		}
 	},
@@ -78,15 +79,14 @@ const getters = {
 			};
 		});
 	},
-	watchlist(state, getters) {
-		return state.watchlist.map((stock) => {
-			const record = getters.stocks.find((element) => element.id == stock.id);
+	getWatchlist(state, getters) {
+		console.log(state.watchlist);
+		return state.watchlist.map((s) => {
+			const record = state.watchlist.find((element) => element.ticker == s.ticker);
 			if (record) {
 				return {
-					id: stock.id,
-					quantity: stock.quantity,
-					name: record.name,
-					price: record.price,
+					ticker: s.ticker,
+					price: s.price,
 				};
 			} else return;
 		});
