@@ -11,7 +11,7 @@
           <input type="email" id="email" v-model="email" />
         </div>
         <div class="input">
-          <label for="age">Your Age</label>
+          <label for="age">Age</label>
           <input type="number" id="age" v-model.number="age" />
         </div>
         <div class="input">
