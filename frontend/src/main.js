@@ -15,9 +15,10 @@ Vue.filter('currency', (value) => {
 	return '$' + value.toLocaleString();
 });
 
-axios.defaults.baseURL = 'https://localhost:5000';
+axios.defaults.baseURL = 'http://localhost:5000';
 
 axios.defaults.headers.get['Accepts'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const reqInterceptor = axios.interceptors.request.use((config) => {
 	console.log('Request Interceptor', config);

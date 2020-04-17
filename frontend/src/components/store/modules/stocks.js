@@ -46,6 +46,7 @@ const actions = {
 		axios
 			.post('/quote', {
 				ticker: ticker,
+				returnSecureToken: true,
 			})
 			.then((res) => {
 				console.log(res);

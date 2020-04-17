@@ -42,8 +42,6 @@ export default new Vuex.Store({
 					returnSecureToken: true,
 				})
 				.then((res) => {
-					console.log('im here');
-					console.log(res.data.token);
 					commit('authUser', {
 						token: res.data.token,
 						userId: res.data.localId,
@@ -69,7 +67,6 @@ export default new Vuex.Store({
 					returnSecureToken: true,
 				})
 				.then((res) => {
-					// console.log(res);
 					// Uses regex to take out the bearer in the string
 					const now = new Date();
 					const expirationDate = new Date(now.getTime() + res.data.expiresIn * 10000);
