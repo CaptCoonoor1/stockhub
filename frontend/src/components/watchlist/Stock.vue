@@ -31,21 +31,21 @@ export default {
   methods: {
     buyStock() {
       const order = {
-        stockId: this.stock.id,
-        stockPrice: this.stock.price,
+        ticker: this.stock.ticker,
+        price: this.stock.price,
         quantity: this.quantity
       };
       this.$store.dispatch("buyStock", order);
-      // console.log(order);
+      console.log(order);
       this.quantity = 0;
     },
     removeStockFromWatchList() {
       const order = {
-        stockId: this.stock.id,
-        stockPrice: this.stock.price,
+        ticker: this.stock.id,
+        price: this.stock.price,
         quantity: this.quantity
       };
-      // console.log(order);
+      console.log(order);
       this.$store.dispatch("remove", order);
     }
   }
