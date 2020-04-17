@@ -6,6 +6,7 @@ const passport = require('passport');
 const cors = require('cors');
 const swagger = require('swagger-ui-express');
 const swagJson = require('./config/swagger.json');
+const path = require('path');
 
 // Get and save required Keys
 const avKey = require('./config/keys').alphaVantage;
@@ -33,6 +34,7 @@ app.use(express.Router());
 app.use(passport.initialize());
 
 require('./config/passport')(passport);
+require('dotenv').config();
 
 // Set headers, etc..
 app.use((req, res, next) => {
@@ -55,6 +57,8 @@ app.use('/', addWatchlist);
 app.use('/', deleteWatchlist);
 app.use('/', quote);
 
+app.use(express.static(path.join(__dirname, "frontend", "build")));
+
 app.use('/swagger', swagger.serve, swagger.setup(swagJson));
 
 app.use(cors());
@@ -66,5 +70,11 @@ mongoose
 	.catch((err) => console.log(err));
 
 const port = process.env.PORT || 5000;
+
+// app.get("*", (req, res) => {
+// 	res.sendFile(path.join(__dirname, "frontend", "index.html"));
+// });
+
+app.use(serveStatic(__dirname + "frontend/dist"));
 
 app.listen(port, () => console.log(`listening on port: ${port}`));
