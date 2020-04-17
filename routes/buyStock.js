@@ -81,11 +81,11 @@ router.post('/stock/buy_market', cors(), (req, res) => {
 											.catch((err) => console.log(err));
 
 										user.save();
-										res.json("Buying");
+										res.status(200).json({buying: true});
 									}
 									else
 									{
-										res.json("Not enough capital");
+										res.status(400).json({notenoughcapital: true});
 									}
 
 

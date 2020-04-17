@@ -66,6 +66,39 @@
 					}
 				}
 			}
+		},
+		"/stock/buy_market": {
+			"post": {
+				"tags": ["StockOps"],
+				"summary": "Buys stock at market price",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"buying": {
+									"type": "boolean"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"notenoughcaptial": {
+									"type": "boolean"
+								},
+								"errors": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
