@@ -5,7 +5,14 @@
 				<td>
 					<h1 style="margin: 8px 0 30px 30px">Your Available Funds: {{ funds | currency }}</h1>
 				</td>
-				<input type="text" style="margin: 0 0 0 30px" placeholder="Ticker" v-model="ticker" />
+
+				<input
+					type="text"
+					@keyup.enter="getQuote"
+					style="margin: 0 0 0 30px"
+					placeholder="Ticker"
+					v-model="ticker"
+				/>
 				<button
 					:disabled="ticker == ''"
 					class="btn btn-primary"
@@ -23,7 +30,7 @@
 			:stock="currentStock"
 			style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);"
 		></app-card>
-		<app-stock v-else v-for="stock in stocks" :stock="stock" :key="stock.id"></app-stock>
+		<!-- <app-stock v-else v-for="stock in stocks" :stock="stock" :key="stock.id"></app-stock> -->
 	</div>
 </template>
 

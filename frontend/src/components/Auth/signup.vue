@@ -81,7 +81,7 @@ export default {
 				confirmPassword: this.confirmPassword,
 				terms: this.terms,
 			};
-			console.log(formData);
+			// console.log(formData);
 			//  axios.post('/accounts:signUp?key=AIzaSyDR0JDNN3t6zkp3VoICH0QGDIKH6F2aGI4',
 			//          {
 			//          email: formData.email,

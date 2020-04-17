@@ -76,7 +76,7 @@ export default {
 			this.quantity = 0;
 		},
 		addStockToWatchlist() {
-			console.log(this);
+			// console.log(this);
 			const order = {
 				stockId: this.currentStock.high,
 				stockPrice: this.currentStock.price,

@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="card text-center"
-		style="height: 30rem; width: 25rem; background-image: linear-gradient(#00b09b, #96c93d);"
+		style="height: 30rem; width: 27rem; background-image: linear-gradient(#00b09b, #96c93d);"
 	>
 		<div class="card-body">
 			<br />
@@ -19,6 +19,7 @@
 				type="number"
 				class="form-control pull-left"
 				style="margin-left: 10px; width: 40%"
+				@keyup.enter="buyStock"
 				placeholder="Quantity"
 				v-model="quantity"
 				:class="{ danger: insufficientFunds }"
@@ -76,7 +77,7 @@ export default {
 			this.quantity = 0;
 		},
 		addStockToWatchlist() {
-			console.log(this);
+			// console.log(this);
 			const order = {
 				stockId: this.currentStock.high,
 				stockPrice: this.currentStock.price,

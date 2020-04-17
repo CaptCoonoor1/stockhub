@@ -65,8 +65,7 @@ export default {
 		},
 	},
 	created() {
-		console.log('created');
-		// this.$vToastify.success('easy-peasy');
+		// console.log('created');
 		this.$store.dispatch('initStocks');
 	},
 };

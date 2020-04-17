@@ -92,7 +92,7 @@ const getters = {
 		});
 	},
 	funds(state) {
-		return state.funds;
+		return state.funds.toFixed(2);
 	},
 };
 
