@@ -19,7 +19,12 @@ const mutations = {
 	},
 	RND_STOCKS(state) {},
 	UPDATE_STOCK(state, curStock) {
-		state.currentStock = curStock;
+		state.currentStock.ticker = curStock['01. symbol'];
+		state.currentStock.price = curStock['05. price'];
+		state.currentStock.high = curStock['03. high'];
+		state.currentStock.low = curStock['04. low'];
+		state.currentStock.change = curStock['09. change'];
+		state.currentStock.changePercent = curStock['10. change percent'];
 	},
 };
 
@@ -49,8 +54,9 @@ const actions = {
 				returnSecureToken: true,
 			})
 			.then((res) => {
-				console.log(res);
-				commit('UPDATE_STOCK', res);
+				const stockInfo = res.data['Global Quote'];
+				console.log(stockInfo['01. symbol']);
+				commit('UPDATE_STOCK', stockInfo);
 			})
 			.catch((error) => console.log(error));
 	},
