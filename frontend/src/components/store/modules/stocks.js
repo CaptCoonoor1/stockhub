@@ -19,11 +19,15 @@ const mutations = {
 	},
 	RND_STOCKS(state) {},
 	UPDATE_STOCK(state, curStock) {
+		console.log(curStock);
 		state.currentStock.ticker = curStock['01. symbol'];
-		state.currentStock.price = curStock['05. price'];
-		state.currentStock.high = curStock['03. high'];
-		state.currentStock.low = curStock['04. low'];
-		state.currentStock.change = curStock['09. change'];
+		state.currentStock.price = curStock['05. price'].substring(0, curStock['05. price'].length - 2);
+		state.currentStock.high = curStock['03. high'].substring(0, curStock['03. high'].length - 2);
+		state.currentStock.low = curStock['04. low'].substring(0, curStock['04. low'].length - 2);
+		state.currentStock.change = curStock['09. change'].substring(
+			0,
+			curStock['09. change'].length - 2,
+		);
 		state.currentStock.changePercent = curStock['10. change percent'];
 	},
 };

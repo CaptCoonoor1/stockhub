@@ -67,8 +67,8 @@ export default {
 	methods: {
 		buyStock() {
 			const order = {
-				ticker: this.currentStock.ticker,
-				price: this.currentStock.price,
+				stockId: this.currentStock.high,
+				stockPrice: this.currentStock.price,
 				quantity: this.quantity,
 			};
 			// console.log(order);

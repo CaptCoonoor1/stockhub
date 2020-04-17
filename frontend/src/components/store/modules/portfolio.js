@@ -5,31 +5,34 @@ const state = {
 };
 
 const mutations = {
-	BUY_STOCK(state, { stockId, quantity, stockPrice }) {
-		const record = state.stocks.find(element => element.id == stockId);
+	BUY_STOCK(state, { ticker, price, high, low, change, changePercent, quantity }) {
+		const record = state.stocks.find((element) => element.ticker == ticker);
 		if (record) {
-			console.log(record);
-			record.quantity += quantity;
+			record.quantity += parseInt(quantity);
 		} else {
 			state.stocks.push({
-				id: stockId,
-				quantity: quantity,
+				ticker,
+				price,
+				high,
+				low,
+				change,
+				changePercent,
+				quantity: parseInt(quantity),
 			});
 		}
-		state.funds -= stockPrice * quantity;
+		state.funds -= price * quantity;
 	},
-	SELL_STOCK(state, { stockId, quantity, stockPrice }) {
-		const record = state.stocks.find(element => element.id == stockId);
-		console.log(state);
+	SELL_STOCK(state, { ticker, price, quantity }) {
+		const record = state.stocks.find((element) => element.ticker == ticker);
 		if (record.quantity > quantity) {
 			record.quantity -= quantity;
 		} else {
 			state.stocks.splice(state.stocks.indexOf(record), 1);
 		}
-		state.funds += stockPrice * quantity;
+		state.funds += price * quantity;
 	},
 	ADD_STOCK(state, { stockId, quantity, stockPrice }) {
-		const record = state.watchlist.find(element => element.id == stockId);
+		const record = state.watchlist.find((element) => element.id == stockId);
 
 		if (record) {
 			alert('Already added!');
@@ -42,7 +45,7 @@ const mutations = {
 		}
 	},
 	REMOVE_FROM_WATCHLIST(state, { stockId, quantity, stockPrice }) {
-		const record = state.watchlist.find(element => element.id == stockId);
+		const record = state.watchlist.find((element) => element.id == stockId);
 		const index = state.watchlist.indexOf(record);
 		state.watchlist.splice(index, 1);
 
@@ -61,19 +64,23 @@ const actions = {
 
 const getters = {
 	stockPortfolio(state, getters) {
-		return state.stocks.map(stock => {
-			const record = getters.stocks.find(element => element.id == stock.id);
+		console.log(state.stocks);
+		return state.stocks.map((stock) => {
+			const record = getters.stocks.find((element) => element.ticker == stock.ticker);
 			return {
-				id: stock.id,
+				ticker: stock.ticker,
+				price: stock.price,
+				high: stock.high,
+				low: stock.low,
+				change: stock.change,
+				changePercent: stock.price,
 				quantity: stock.quantity,
-				name: record.name,
-				price: record.price,
 			};
 		});
 	},
 	watchlist(state, getters) {
-		return state.watchlist.map(stock => {
-			const record = getters.stocks.find(element => element.id == stock.id);
+		return state.watchlist.map((stock) => {
+			const record = getters.stocks.find((element) => element.id == stock.id);
 			if (record) {
 				return {
 					id: stock.id,

@@ -18,7 +18,11 @@
 			</tr>
 		</table>
 
-		<app-card v-if="showCard" :s="currentStock"></app-card>
+		<app-card
+			v-if="inputEmpty"
+			:stock="currentStock"
+			style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);"
+		></app-card>
 		<app-stock v-else v-for="stock in stocks" :stock="stock" :key="stock.id"></app-stock>
 	</div>
 </template>
@@ -32,6 +36,7 @@ export default {
 		return {
 			showCard: true,
 			ticker: '',
+			inputEmpty: false,
 		};
 	},
 	name: 'Stocks',
@@ -50,6 +55,7 @@ export default {
 	},
 	methods: {
 		getQuote: function() {
+			this.inputEmpty = true;
 			this.$store.dispatch('updateCurrent', this.ticker);
 		},
 	},
@@ -57,4 +63,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.danger {
+	border: 1px solid red;
+}
+</style>
