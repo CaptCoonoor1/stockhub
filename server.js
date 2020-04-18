@@ -6,6 +6,8 @@ const passport = require('passport');
 const cors = require('cors');
 const swagger = require('swagger-ui-express');
 const swagJson = require('./config/swagger.json');
+const path = require('path');
+const serveStatic = reuire('serve-static');
 
 // Get and save required Keys
 const avKey = require('./config/keys').alphaVantage;
@@ -66,5 +68,8 @@ mongoose
 	.catch((err) => console.log(err));
 
 const port = process.env.PORT || 5000;
+
+app.use(serveStatic(path.join(__dirname, 'frontend', 'dist')));
+
 
 app.listen(port, () => console.log(`listening on port: ${port}`));
