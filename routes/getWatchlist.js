@@ -14,7 +14,7 @@ const router = express.Router();
 router.post('/watchlist/get', cors(), (req, res) => {
 	const userID = String(decoder(req.body.token).id);
 
-	WLStock.find({buyerID: userID})
+	WLStock.find({watcherID: userID})
 		.then(WLStock => res.status(200).json(WLStock))
 		.catch((err) => console.log(err));
 });
