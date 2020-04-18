@@ -71,5 +71,9 @@ const port = process.env.PORT || 5000;
 
 app.use(serveStatic(path.join(__dirname, 'frontend', 'dist')));
 
+app.get('/', (req, res) => {
+	res.render(path.join(__dirname + '/frontend/dist/index.html'));
+});
+
 
 app.listen(port, () => console.log(`listening on port: ${port}`));
