@@ -80,7 +80,9 @@ export default new Vuex.Store({
 						userId: res.data.localId,
 					});
 					dispatch('initStocks');
-
+					commit('SET_FUNDS', {
+						funds: res.data.cash,
+					});
 					// dispatch('setLogoutTimer', res.data.expiresIn);
 				})
 				.catch((error) => console.log(error));
