@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-	baseURL: 'http://stock-sim-nid.herokuapp.com'
+	baseURL: 'http://localhost:5000'
 });
 
 //instance.defaults.headers.common['SOMETHING'] = 'something'
