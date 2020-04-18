@@ -73,4 +73,10 @@ export default {
 .danger {
 	border: 1px solid red;
 }
+.negative {
+	color: red;
+}
+.positive {
+	color: green;
+}
 </style>

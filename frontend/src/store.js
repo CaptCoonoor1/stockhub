@@ -46,8 +46,8 @@ export default new Vuex.Store({
 						token: res.data.token,
 						userId: res.data.localId,
 					});
-					const now = new Date();
-					const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+					// const now = new Date();
+					// const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
 					localStorage.setItem('token', res.data.token);
 
 					// Don't need these in localStorage
@@ -79,6 +79,8 @@ export default new Vuex.Store({
 						token: res.data.idToken,
 						userId: res.data.localId,
 					});
+					dispatch('initStocks');
+
 					// dispatch('setLogoutTimer', res.data.expiresIn);
 				})
 				.catch((error) => console.log(error));
