@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+const port = process.env.PORT;
+
 const instance = axios.create({
 	//baseURL: 'http://localhost:5000'
-	const port = process.env.PORT;
 	baseURL: port
 });
 
