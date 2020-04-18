@@ -7,7 +7,7 @@ const cors = require('cors');
 const swagger = require('swagger-ui-express');
 const swagJson = require('./config/swagger.json');
 const path = require('path');
-const serveStatic = reuire('serve-static');
+const serveStatic = require('serve-static');
 
 // Get and save required Keys
 const avKey = require('./config/keys').alphaVantage;
