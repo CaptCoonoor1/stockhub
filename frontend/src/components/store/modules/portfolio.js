@@ -39,7 +39,7 @@ const mutations = {
 				res.data.map((el) => {
 					newWatchlistArray.push({
 						ticker: el.Ticker,
-						price: el.AvgPrice.toFixed(2),
+						price: el.Price.toFixed(2),
 					});
 				});
 				console.log(newWatchlistArray);
