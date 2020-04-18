@@ -6,8 +6,6 @@ const passport = require('passport');
 const cors = require('cors');
 const swagger = require('swagger-ui-express');
 const swagJson = require('./config/swagger.json');
-const path = require('path');
-const serveStatic = require('serve-static');
 
 // Get and save required Keys
 const avKey = require('./config/keys').alphaVantage;
@@ -35,16 +33,15 @@ app.use(express.Router());
 app.use(passport.initialize());
 
 require('./config/passport')(passport);
-require('dotenv').config();
 
 // Set headers, etc..
 app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin','*');
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader(
 		'Access-Control-Allow-Headers',
 		'Origin, X-Requested-With, Content-Type, Accept, Authorization',
 	);
-	res.setHeader('Access-Control-Allow-Methods','GET, POST, PATCH, DELETE, OPTIONS');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
 	next();
 });
 
@@ -58,24 +55,16 @@ app.use('/', addWatchlist);
 app.use('/', deleteWatchlist);
 app.use('/', quote);
 
-app.use(express.static(path.join(__dirname, "frontend", "build")));
-
 app.use('/swagger', swagger.serve, swagger.setup(swagJson));
 
 app.use(cors());
 
 // Connect to database
 mongoose
-	.connect(db, {useNewUrlParser: true, useUnifiedTopology: true })
+	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() => console.log('Connected to MongoDB...'))
 	.catch((err) => console.log(err));
 
 const port = process.env.PORT || 5000;
-
-app.use('/', serveStatic(__dirname + "/frontend/dist"));
-
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "frontend", "/dist/index.html"));
-});
 
 app.listen(port, () => console.log(`listening on port: ${port}`));

@@ -256,7 +256,6 @@
 			"post": {
 				"tags": ["StockOps"],
 				"summary": "Get quote of stock",
-				"consumes": "application/x-www-form-urlencoded",
 				"responses": {
 					"200": {
 						"description": "OK",
