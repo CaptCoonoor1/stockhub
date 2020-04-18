@@ -50,6 +50,7 @@ router.post('/login', cors(), (req, res) =>
 						{
 							res.json({
 								success: true,
+								cash: user.cash,
 								token: "Bearer " + token
 							});
 						})
