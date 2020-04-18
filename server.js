@@ -24,6 +24,7 @@ const sellStock = require('./routes/sellStock');
 const getPortfolio = require('./routes/getPortfolio');
 const addWatchlist = require('./routes/addWatchlist');
 const deleteWatchlist = require('./routes/deleteWatchlist');
+const getWatchlist = require('./routes/getWatchlist');
 const quote = require('./routes/getQuote');
 
 const app = express();
@@ -56,6 +57,7 @@ app.use('/', sellStock);
 app.use('/', getPortfolio);
 app.use('/', addWatchlist);
 app.use('/', deleteWatchlist);
+app.use('/', getWatchlist);
 app.use('/', quote);
 
 app.use('/swagger', swagger.serve, swagger.setup(swagJson));
