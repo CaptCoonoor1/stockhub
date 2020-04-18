@@ -35,6 +35,7 @@ app.use(express.Router());
 app.use(passport.initialize());
 
 require('./config/passport')(passport);
+require('dotenv').config();
 
 // Set headers, etc..
 app.use((req, res, next) => {
@@ -69,10 +70,10 @@ mongoose
 
 const port = process.env.PORT || 5000;
 
-app.use(express.static(path.join(__dirname, '/dist')));
+app.use('/', serveStatic('/frontend/dist'));
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname + '/frontend/dist/index.html'));
+	res.sendFile(path.join(__dirname, "frontend", "/dist/index.html"));
 });
 
 
