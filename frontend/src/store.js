@@ -69,7 +69,7 @@ export default new Vuex.Store({
 				.then((res) => {
 					// Uses regex to take out the bearer in the string
 					// this.$vToastify.success('Successful Login');
-					console.log(res);
+					console.log(res.data.cash);
 					const now = new Date();
 					const expirationDate = new Date(now.getTime() + res.data.expiresIn * 10000);
 					localStorage.setItem('token', res.data.token.replace(/^Bearer\s/i, ''));
@@ -78,6 +78,9 @@ export default new Vuex.Store({
 					commit('authUser', {
 						token: res.data.idToken,
 						userId: res.data.localId,
+					});
+					commit('SET_FUNDS', {
+						funds: res.data.cash,
 					});
 					dispatch('initStocks');
 

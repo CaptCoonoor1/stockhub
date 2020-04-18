@@ -8,6 +8,9 @@ const state = {
 };
 
 const mutations = {
+	SET_FUNDS(state, { funds }) {
+		state.funds = funds;
+	},
 	SET_STOCKS(state, stocks) {
 		let newStocksArray = [];
 		axios
