@@ -19,7 +19,6 @@ const mutations = {
 				returnSecureToken: true,
 			})
 			.then((res) => {
-				console.log(res);
 				res.data.map((el) => {
 					newStocksArray.push({
 						ticker: el.Ticker,
@@ -27,7 +26,6 @@ const mutations = {
 						price: el.AvgPrice.toFixed(2),
 					});
 				});
-				console.log(newStocksArray);
 			})
 			.catch((error) => console.log(error));
 		state.stocks = newStocksArray;
@@ -38,14 +36,12 @@ const mutations = {
 				returnSecureToken: true,
 			})
 			.then((res) => {
-				console.log(res);
 				res.data.map((el) => {
 					newWatchlistArray.push({
 						ticker: el.Ticker,
 						price: el.Price.toFixed(2),
 					});
 				});
-				console.log(newWatchlistArray);
 			})
 			.catch((error) => console.log(error));
 		state.watchlist = newWatchlistArray;
@@ -101,9 +97,6 @@ const mutations = {
 
 	ADD_STOCK(state, { ticker, price }) {
 		const record = state.watchlist.find((element) => element.ticker == ticker);
-		console.log('TICKER: ' + ticker);
-		console.log('Price; ' + price);
-		console.log(record);
 		if (record) {
 			alert('Already added!');
 		} else {
@@ -137,7 +130,6 @@ const mutations = {
 				console.log(res);
 			})
 			.catch((error) => console.log(error));
-		console.log(state.watchlist);
 	},
 };
 
@@ -149,7 +141,6 @@ const actions = {
 		commit('REMOVE_FROM_WATCHLIST', stock);
 	},
 	updateCurrent({ commit }, ticker) {
-		console.log(ticker);
 		axios
 			.post('/quote', {
 				ticker: ticker,
@@ -157,7 +148,6 @@ const actions = {
 			})
 			.then((res) => {
 				const stockInfo = res.data['Global Quote'];
-				console.log(stockInfo['01. symbol']);
 				commit('UPDATE_STOCK', stockInfo);
 			})
 			.catch((error) => console.log(error));
@@ -166,7 +156,7 @@ const actions = {
 
 const getters = {
 	stockPortfolio(state, getters) {
-		console.log(state.stocks);
+		// console.log(state.stocks);
 		return state.stocks.map((stock) => {
 			const record = state.stocks.find((element) => element.ticker == stock.ticker);
 			return {
@@ -184,7 +174,7 @@ const getters = {
 		return state.stocks;
 	},
 	getWatchlist(state, getters) {
-		console.log(state.watchlist);
+		// console.log(state.watchlist);
 		return state.watchlist.map((s) => {
 			const record = state.watchlist.find((element) => element.ticker == s.ticker);
 			if (record) {

@@ -54,8 +54,8 @@ export default {
 	methods: {
 		...mapActions({ placeSellOrder: 'sellStock' }),
 		sellStock() {
-			console.log(this.currentStock);
-			console.log(this.quantity);
+			// console.log(this.currentStock);
+			// console.log(this.quantity);
 
 			const order = {
 				ticker: this.stock.ticker,

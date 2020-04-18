@@ -37,7 +37,8 @@ export default {
 			};
 			// console.log(formData);
 			this.$store.dispatch('login', { email: formData.email, password: formData.password });
-			// this.$vToastify.success('easy-peasy');
+			if (localStorage.token) this.$vToastify.success('Successful Login');
+			else this.$vToastify.error('Invalid Username/Password');
 		},
 	},
 };

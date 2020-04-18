@@ -16,7 +16,7 @@ const state = {
 const mutations = {
 	RND_STOCKS(state) {},
 	UPDATE_STOCK(state, curStock) {
-		console.log(curStock);
+		// console.log(curStock);
 		state.currentStock.ticker = curStock['01. symbol'];
 		state.currentStock.price = curStock['05. price'].substring(0, curStock['05. price'].length - 2);
 		state.currentStock.high = curStock['03. high'].substring(0, curStock['03. high'].length - 2);
