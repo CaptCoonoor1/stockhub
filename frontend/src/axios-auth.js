@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const instance = axios.create({
 	//baseURL: 'http://localhost:5000'
-	baseURL: ''
+	const port = process.env.PORT;
+	baseURL: port
 });
 
 //instance.defaults.headers.common['SOMETHING'] = 'something'
