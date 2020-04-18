@@ -1,5 +1,8 @@
 <template>
-  <div class="card text-center" style="height: 30rem; width: 27rem; background-image: ">
+  <div
+    class="card text-center"
+    style="height: 30rem; width: 27rem; background-image: linear-gradient(#00b09b, #96c93d);"
+  >
     <div class="card-body">
       <br />
       <br />
@@ -14,15 +17,14 @@
       <p class="card-text" style="margin: 20px">Change Percent: {{ stock.changePercent }}</p>
       <input
         type="number"
-        class="form-control"
-        style="margin-left: 129px; width: 40%"
+        class="form-control pull-left"
+        style="margin-left: 10px; width: 40%"
         @keyup.enter="buyStock"
         placeholder="Quantity"
         v-model="quantity"
         :class="{ danger: insufficientFunds }"
       />
     </div>
-    <br />
     <button
       class="btn btn-success"
       @click="buyStock"
