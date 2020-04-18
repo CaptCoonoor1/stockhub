@@ -21,13 +21,31 @@ const mutations = {
 					newStocksArray.push({
 						ticker: el.Ticker,
 						quantity: el.Quantity,
-						price: el.AvgPrice,
+						price: el.AvgPrice.toFixed(2),
 					});
 				});
 				console.log(newStocksArray);
 			})
 			.catch((error) => console.log(error));
 		state.stocks = newStocksArray;
+		let newWatchlistArray = [];
+		axios
+			.post('/watchlist/get', {
+				token: localStorage.token,
+				returnSecureToken: true,
+			})
+			.then((res) => {
+				console.log(res);
+				res.data.map((el) => {
+					newWatchlistArray.push({
+						ticker: el.Ticker,
+						price: el.AvgPrice.toFixed(2),
+					});
+				});
+				console.log(newWatchlistArray);
+			})
+			.catch((error) => console.log(error));
+		state.watchlist = newWatchlistArray;
 	},
 	BUY_STOCK(state, { ticker, price, high, low, change, changePercent, quantity }) {
 		const record = state.stocks.find((element) => element.ticker == ticker);
@@ -65,17 +83,17 @@ const mutations = {
 			state.stocks.splice(state.stocks.indexOf(record), 1);
 		}
 		state.funds += price * quantity;
-		// axios
-		// 	.post('/stock/sell_market', {
-		// 		token: localStorage.token,
-		// 		ticker: ticker,
-		// 		quantity: quantity,
-		// 		returnSecureToken: true,
-		// 	})
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 	})
-		// 	.catch((error) => console.log(error));
+		axios
+			.post('/stock/sell_market', {
+				token: localStorage.token,
+				ticker: ticker,
+				quantity: quantity,
+				returnSecureToken: true,
+			})
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((error) => console.log(error));
 	},
 
 	ADD_STOCK(state, { ticker, price }) {
@@ -91,6 +109,16 @@ const mutations = {
 				price: price,
 			});
 		}
+		axios
+			.post('/watchlist/add', {
+				token: localStorage.token,
+				ticker: ticker,
+				returnSecureToken: true,
+			})
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((error) => console.log(error));
 	},
 	REMOVE_FROM_WATCHLIST(state, { stockId, quantity, stockPrice }) {
 		const record = state.watchlist.find((element) => element.id == stockId);
