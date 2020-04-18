@@ -1,7 +1,7 @@
 import stocks from '../../../data/stocks';
 import axios from 'axios';
 const state = {
-	stocks: [],
+	// stocks: [],
 	currentStock: {
 		ticker: '',
 		price: 0,
@@ -14,9 +14,6 @@ const state = {
 };
 
 const mutations = {
-	SET_STOCKS(state, stocks) {
-		state.stocks = stocks;
-	},
 	RND_STOCKS(state) {},
 	UPDATE_STOCK(state, curStock) {
 		console.log(curStock);
@@ -50,26 +47,26 @@ const actions = {
 		commit('ADD_STOCK', order);
 	},
 
-	updateCurrent: ({ commit }, ticker) => {
-		console.log(ticker);
-		axios
-			.post('/quote', {
-				ticker: ticker,
-				returnSecureToken: true,
-			})
-			.then((res) => {
-				const stockInfo = res.data['Global Quote'];
-				console.log(stockInfo['01. symbol']);
-				commit('UPDATE_STOCK', stockInfo);
-			})
-			.catch((error) => console.log(error));
-	},
+	// updateCurrent: ({ commit }, ticker) => {
+	// 	console.log(ticker);
+	// 	axios
+	// 		.post('/quote', {
+	// 			ticker: ticker,
+	// 			returnSecureToken: true,
+	// 		})
+	// 		.then((res) => {
+	// 			const stockInfo = res.data['Global Quote'];
+	// 			console.log(stockInfo['01. symbol']);
+	// 			commit('UPDATE_STOCK', stockInfo);
+	// 		})
+	// 		.catch((error) => console.log(error));
+	// },
 };
 
 const getters = {
-	stocks: (state) => {
-		return state.stocks;
-	},
+	// stocks: (state) => {
+	// 	return state.stocks;
+	// },
 	currentStock: (state) => {
 		return state.currentStock;
 	},
