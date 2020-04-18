@@ -68,6 +68,7 @@ export default {
 			this.quantity = 0;
 		},
 		addStockToWatchlist() {
+			console.log(this);
 			const order = {
 				ticker: this.stock.ticker,
 				price: this.stock.price,
