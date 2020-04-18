@@ -120,11 +120,20 @@ const mutations = {
 			})
 			.catch((error) => console.log(error));
 	},
-	REMOVE_FROM_WATCHLIST(state, { stockId, quantity, stockPrice }) {
-		const record = state.watchlist.find((element) => element.id == stockId);
+	REMOVE_FROM_WATCHLIST(state, { ticker }) {
+		const record = state.watchlist.find((element) => element.ticker == ticker);
 		const index = state.watchlist.indexOf(record);
 		state.watchlist.splice(index, 1);
-
+		axios
+			.post('/watchlist/delete', {
+				token: localStorage.token,
+				ticker: ticker,
+				returnSecureToken: true,
+			})
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((error) => console.log(error));
 		console.log(state.watchlist);
 	},
 };

@@ -67,8 +67,8 @@ export default {
 	methods: {
 		buyStock() {
 			const order = {
-				stockId: this.currentStock.high,
-				stockPrice: this.currentStock.price,
+				ticker: this.stock.ticker,
+				price: this.stock.price,
 				quantity: this.quantity,
 			};
 			// console.log(order);
@@ -78,8 +78,8 @@ export default {
 		addStockToWatchlist() {
 			// console.log(this);
 			const order = {
-				stockId: this.currentStock.high,
-				stockPrice: this.currentStock.price,
+				ticker: this.stock.ticker,
+				price: this.stock.price,
 				quantity: this.quantity,
 			};
 			// console.log(order);
