@@ -16,6 +16,7 @@
           @keyup.enter="loginButton"
         />
       </fieldset>
+      <p v-show="errorMessage" style="color: red">Invalid Email/Password Please Try Again</p>
       <button type="button" class="submitButton" @click="loginButton">Log In!</button>
     </form>
   </div>
@@ -26,8 +27,14 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      errorMessage: false
     };
+  },
+  computed: {
+    userAuth() {
+      return this.$store.getters.isAuthenticated;
+    }
   },
   methods: {
     loginButton() {
@@ -40,7 +47,12 @@ export default {
         email: formData.email,
         password: formData.password
       });
-      // this.$vToastify.success('easy-peasy');
+      setTimeout(() => {
+        if (!this.userAuth) this.errorMessage = true;
+        else this.$router.push({ path: "/stocks" });
+      }, 200);
+
+      // this.$vToastify.error("Invalid email/password");
     }
   }
 };

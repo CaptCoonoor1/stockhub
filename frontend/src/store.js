@@ -13,6 +13,7 @@ export default new Vuex.Store({
 		idToken: null,
 		userId: null,
 		user: null,
+		userAuthenticated: false,
 	},
 	mutations: {
 		authUser(state, userData) {
@@ -56,7 +57,7 @@ export default new Vuex.Store({
 					commit('storeUser', authData);
 					// dispatch('setLogoutTimer', res.data.expiresIn);
 				})
-				.catch((error) => console.log(error));
+				.catch((error) => alert('Email has already been taken'));
 		},
 		login({ commit, dispatch }, authData) {
 			axios
@@ -83,6 +84,7 @@ export default new Vuex.Store({
 					commit('SET_FUNDS', {
 						funds: res.data.cash,
 					});
+					this.state.userAuthenticated = true;
 					// dispatch('setLogoutTimer', res.data.expiresIn);
 				})
 				.catch((error) => console.log(error));
@@ -108,6 +110,7 @@ export default new Vuex.Store({
 			localStorage.removeItem('expirationDate');
 			localStorage.removeItem('token');
 			localStorage.removeItem('userId');
+			this.state.userAuthenticated = false;
 			router.replace('/login');
 		},
 		storeUser({ commit, state }, userData) {
@@ -145,7 +148,7 @@ export default new Vuex.Store({
 			return state.user;
 		},
 		isAuthenticated(state) {
-			return state.idToken !== null;
+			return state.userAuthenticated;
 		},
 	},
 	modules: {
