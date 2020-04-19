@@ -47,10 +47,11 @@ export default {
         email: formData.email,
         password: formData.password
       });
-      setTimeout(() => {
-        if (!this.userAuth) this.errorMessage = true;
-        else this.$router.push({ path: "/stocks" });
-      }, 200);
+      // setTimeout(() => {
+      //   console.log("test");
+      //   if (!this.userAuth) this.errorMessage = true;
+      //   else this.$router.push({ path: "/stocks" });
+      // }, 300);
 
       // this.$vToastify.error("Invalid email/password");
     }
