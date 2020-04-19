@@ -70,8 +70,10 @@ mongoose
 	.then(() => console.log('Connected to MongoDB...'))
 	.catch((err) => console.log(err));
 
+// Set port to host
 const port = process.env.PORT || 5000;
 
+// Sends the frontend home - index.html file
 app.use('/', serveStatic(path.join(__dirname, '/frontend/dist')));
 
 app.get('*', (req, res) => {
