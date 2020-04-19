@@ -57,7 +57,7 @@ export default new Vuex.Store({
 					commit('storeUser', authData);
 					// dispatch('setLogoutTimer', res.data.expiresIn);
 				})
-				.catch((error) => console.log(error));
+				.catch((error) => alert('Email has already been taken'));
 		},
 		login({ commit, dispatch }, authData) {
 			axios

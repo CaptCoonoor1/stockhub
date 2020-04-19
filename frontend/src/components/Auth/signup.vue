@@ -3,12 +3,17 @@
 		<form>
 			<fieldset>
 				<legend><span class="number">1</span> Your Information</legend>
+				<p v-if="this.invalidName" style="color: red">
+					Name is Required
+				</p>
 				<label for="name">Name:</label>
 				<input type="text" name="name" v-model="name" placeholder="Your Name *" />
 
+				<p v-if="this.invalidEmail" style="color: red">
+					Please Enter a Valid Email
+				</p>
 				<label for="email">Email:</label>
 				<input type="email" name="email" v-model="email" placeholder="Your Email *" />
-
 				<label for="password">Password:</label>
 				<input type="password" name="password" v-model="password" placeholder="Your Password *" />
 
@@ -28,7 +33,19 @@
 				<textarea name="info" placeholder="How did you find out about us?"></textarea>
 			</fieldset>
 
-			<button type="button" class="submitButton" @click="submitForm">Sign Up!</button>
+			<button
+				type="button"
+				:disabled="
+					samePassword ||
+						invalidEmail ||
+						invalidName ||
+						(name == '' && email == '' && password == '' && confirmPassword == '')
+				"
+				class="submitButton"
+				@click="submitForm"
+			>
+				Sign Up!
+			</button>
 		</form>
 	</div>
 </template>
@@ -41,6 +58,8 @@ export default {
 			email: '',
 			password: '',
 			confirmPassword: '',
+			invalidName: false,
+			invalidEmail: false,
 		};
 	},
 	computed: {
@@ -50,22 +69,34 @@ export default {
 	},
 	methods: {
 		submitForm() {
-			const formData = {
-				name: this.name,
-				email: this.email,
-				password: this.password,
-				confirmPassword: this.confirmPassword,
-			};
-			console.log(formData);
-			// axios
-			//   .post("/signup", {
-			//     email: formData.email,
-			//     password: formData.password,
-			//     returnSecureToken: true
-			//   })
-			//   .then(res => console.log(res))
-			//   .catch(error => console.log(error));
-			this.$store.dispatch('signup', formData);
+			let flag = false;
+			if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(this.email)) {
+				this.invalidEmail = true;
+				flag = true;
+			}
+			if (this.name == '') {
+				this.invalidName = true;
+				flag = true;
+			}
+			if (!flag) {
+				const formData = {
+					name: this.name,
+					email: this.email,
+					password: this.password,
+					confirmPassword: this.confirmPassword,
+				};
+				console.log(formData);
+				// axios
+				//   .post("/signup", {
+				//     email: formData.email,
+				//     password: formData.password,
+				//     returnSecureToken: true
+				//   })
+				//   .then(res => console.log(res))
+				//   .catch(error => console.log(error));
+				this.$store.dispatch('signup', formData);
+				this.$router.push({ path: '/login' });
+			}
 		},
 	},
 };
