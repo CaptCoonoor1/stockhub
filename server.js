@@ -8,6 +8,7 @@ const swagger = require('swagger-ui-express');
 const swagJson = require('./config/swagger.json');
 const path = require('path');
 const serveStatic = require('serve-static');
+const proxy = require('http-proxy-middleware');
 
 // Get and save required Keys
 const avKey = require('./config/keys').alphaVantage;
@@ -73,6 +74,11 @@ mongoose
 const port = process.env.PORT || 5000;
 
 app.use('/', serveStatic(path.join(__dirname, '/frontend/dist')));
+
+module.exports = function (app) 
+{
+	app.use(proxy['/api'], {target: 'http://localhost:5000'});
+}	
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'frontend', '/dist/index.html'));
