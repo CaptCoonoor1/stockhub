@@ -1,23 +1,23 @@
 <template>
-  <div id="signin" style="margin-bottom: 220px">
-    <div class="signin-form">
-      <form @submit.prevent="onSubmit">
-        <div class="input">
-          <label for="email">Email</label>
-          <input type="email" id="email" v-model="email" />
-        </div>
-        <div class="input">
-          <label for="password">Password</label>
-          <input type="password" id="password" v-model="password" />
-        </div>
-        <div class="submit">
-          <div class="buttons">
-            <button class="button is-medium is-primary is-rounded">Submit</button>
-            <router-link to="/dashboard" class="button is-active">Go to My Account</router-link>
-          </div>
-        </div>
-      </form>
-    </div>
+  <div class="login-form">
+    <form>
+      <fieldset>
+        <legend>Login</legend>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" v-model="email" placeholder="Your Email " />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          name="password"
+          v-model="password"
+          placeholder="Your Password "
+          @keyup.enter="loginButton"
+        />
+      </fieldset>
+      <button type="button" class="submitButton" @click="loginButton">Log In!</button>
+    </form>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    loginButton() {
       const formData = {
         email: this.email,
         password: this.password
@@ -46,54 +46,107 @@ export default {
 };
 </script>
 
-<style scoped>
-.signin-form {
-  width: 400px;
-  margin: 30px auto;
-  border: 1px solid #eee;
-  padding: 20px;
-  box-shadow: 0 2px 3px #ccc;
-}
-
-.input {
+<style>
+.login-form {
+  max-width: 500px;
+  padding: 10px 20px;
+  background: #f4f7f8;
   margin: 10px auto;
+  margin-top: 5%;
+  margin-bottom: 6%;
+  padding: 20px;
+  background: #f4f7f8;
+  border-radius: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
-
-.input label {
+.login-form fieldset {
+  border: none;
+}
+.login-form legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+.login-form label {
   display: block;
-  color: #4e4e4e;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
-
-.input input {
-  font: inherit;
+.login-form input[type="text"],
+.login-form input[type="date"],
+.login-form input[type="datetime"],
+.login-form input[type="email"],
+.login-form input[type="number"],
+.login-form input[type="search"],
+.login-form input[type="time"],
+.login-form input[type="url"],
+.login-form input[type="password"],
+.login-form textarea,
+.login-form select {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 0;
+  outline: 0;
+  padding: 10px;
   width: 100%;
-  padding: 6px 12px;
-  margin-left: 10px;
-  margin-right: -12px;
-
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 30px;
+}
+.login-form input[type="text"]:focus,
+.login-form input[type="date"]:focus,
+.login-form input[type="datetime"]:focus,
+.login-form input[type="email"]:focus,
+.login-form input[type="number"]:focus,
+.login-form input[type="search"]:focus,
+.login-form input[type="time"]:focus,
+.login-form input[type="url"]:focus,
+.login-form textarea:focus,
+.login-form select:focus {
+  background: #d2d9dd;
+}
+.login-form select {
+  -webkit-appearance: menulist-button;
+  height: 35px;
+}
+.login-form .number {
+  background: #1abc9c;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 15px 15px 15px 0px;
 }
 
-.input input:focus {
-  outline: none;
-  border: 1px solid #1eecad;
-  background-color: #eee;
+.submitButton {
+  /* .login-form input[type="submitButton"] { */
+  position: relative;
+  display: block;
+  padding: 19px 39px 18px 39px;
+  color: #fff;
+  margin: 0 auto;
+  background: #1abc9c;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  border: 1px solid #16a085;
+  border-width: 1px 1px 3px;
+  margin-bottom: 10px;
 }
-
-.submit button:hover,
-.submit button:active {
-  background-color: #1eecad;
-  color: white;
-}
-
-.submit button[disabled],
-.submit button[disabled]:hover,
-.submit button[disabled]:active {
-  border: 1px solid #ccc;
-  background-color: transparent;
-  color: #ccc;
-  cursor: not-allowed;
+.submitButton:hover {
+  /* .login-form input[type="submitButton"]:hover { */
+  background: #109177;
 }
 </style>

@@ -1,167 +1,169 @@
 <template>
-	<div id="signup">
-		<div class="signup-form">
-			<form @submit.prevent="onSubmit">
-				<div class="input">
-					<label for="name">Name</label>
-					<input type="name" id="name" v-model="name" />
-				</div>
-				<div class="input">
-					<label for="email">Email</label>
-					<input type="email" id="email" v-model="email" />
-				</div>
-				<div class="input">
-					<label for="age">Age</label>
-					<input type="number" id="age" v-model.number="age" />
-				</div>
-				<div class="input">
-					<label for="password">Password</label>
-					<input type="password" id="password" v-model="password" />
-				</div>
-				<div class="input">
-					<label for="confirm-password">Confirm Password</label>
-					<input type="password" id="confirm-password" v-model="confirmPassword" />
-				</div>
-				<!-- <div class="input">
-					<label for="country">Country</label>
-					<select id="country" v-model="country">
-						<option value="usa">USA</option>
-						<option value="india">India</option>
-						<option value="uk">UK</option>
-						<option value="germany">Germany</option>
-					</select>
-				</div> -->
+  <div class="signup-form">
+    <form>
+      <fieldset>
+        <legend>
+          <span class="number">1</span> Your Information
+        </legend>
+        <label for="name">Name:</label>
+        <input type="text" name="name" v-model="name" placeholder="Your Name *" />
 
-				<div class="input inline">
-					<input type="checkbox" id="terms" v-model="terms" />
-					<label for="terms">Accept Terms of Use</label>
-				</div>
-				<div class="submit">
-					<div class="buttons">
-						<button class="button is-medium is-primary is-rounded">Join Now</button>
-						<router-link to="/portfolio" class="button is-active">Go to My Account</router-link>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" v-model="email" placeholder="Your Email *" />
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" v-model="password" placeholder="Your Password *" />
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          v-model="confirmPassword"
+          placeholder="Confirm Password *"
+        />
+      </fieldset>
+      <fieldset>
+        <legend>
+          <span class="number">2</span> Additional Info
+        </legend>
+        <textarea name="info" placeholder="How did you find out about us?"></textarea>
+      </fieldset>
+      <button type="button" class="submitButton" @click="submitForm">Sign Up!</button>
+    </form>
+  </div>
 </template>
 
 <script>
 export default {
-	data() {
-		return {
-			name: '',
-			email: '',
-			age: null,
-			password: '',
-			confirmPassword: '',
-			country: 'usa',
-			hobbyInputs: [],
-			terms: false,
-		};
-	},
-	methods: {
-		onAddHobby() {
-			const newHobby = {
-				id: Math.random() * Math.random() * 1000,
-				value: '',
-			};
-			this.hobbyInputs.push(newHobby);
-		},
-		onDeleteHobby(id) {
-			this.hobbyInputs = this.hobbyInputs.filter((hobby) => hobby.id !== id);
-		},
-		onSubmit() {
-			const formData = {
-				name: this.name,
-				email: this.email,
-				age: this.age,
-				password: this.password,
-				confirmPassword: this.confirmPassword,
-				terms: this.terms,
-			};
-			// console.log(formData);
-			//  axios.post('/accounts:signUp?key=AIzaSyDR0JDNN3t6zkp3VoICH0QGDIKH6F2aGI4',
-			//          {
-			//          email: formData.email,
-			//        password: formData.password,
-			//      returnSecureToken: true
-			//  })
-			//.then(res=>console.log(res))
-			//.catch(error => console.log(error))
-			this.$store.dispatch('signup', formData);
-		},
-	},
+  data() {
+    return {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    };
+  },
+  methods: {
+    submitForm() {
+      const formData = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        confirmPassword: this.confirmPassword
+      };
+      console.log(formData);
+      // axios
+      //   .post("/signup", {
+      //     email: formData.email,
+      //     password: formData.password,
+      //     returnSecureToken: true
+      //   })
+      //   .then(res => console.log(res))
+      //   .catch(error => console.log(error));
+      this.$store.dispatch("signup", formData);
+    }
+  }
 };
 </script>
 
-<style scoped>
+<style>
 .signup-form {
-	width: 400px;
-	margin: 30px auto;
-	border: 1px solid #eee;
-	padding: 20px;
-	box-shadow: 0 2px 3px #ccc;
+  max-width: 500px;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  margin: 10px auto;
+  padding: 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
-.input {
-	margin: 10px auto;
+.signup-form fieldset {
+  border: none;
 }
-.input label {
-	display: block;
-	color: #4e4e4e;
-	margin-bottom: 2px;
-	margin-top: 2px;
-	font-size: 15px;
+.signup-form legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+.signup-form label {
+  display: block;
+  margin-bottom: 8px;
+}
+.signup-form input[type="text"],
+.signup-form input[type="date"],
+.signup-form input[type="datetime"],
+.signup-form input[type="email"],
+.signup-form input[type="number"],
+.signup-form input[type="search"],
+.signup-form input[type="time"],
+.signup-form input[type="url"],
+.signup-form input[type="password"],
+.signup-form textarea,
+.signup-form select {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 1px;
+  font-size: 15px;
+  margin: 0;
+  outline: 0;
+  padding: 9px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 24px;
+}
+.signup-form input[type="text"]:focus,
+.signup-form input[type="date"]:focus,
+.signup-form input[type="datetime"]:focus,
+.signup-form input[type="email"]:focus,
+.signup-form input[type="number"]:focus,
+.signup-form input[type="search"]:focus,
+.signup-form input[type="time"]:focus,
+.signup-form input[type="url"]:focus,
+.signup-form textarea:focus,
+.signup-form select:focus {
+  background: #d2d9dd;
+}
+.signup-form select {
+  -webkit-appearance: menulist-button;
+  height: 35px;
+}
+.signup-form .number {
+  background: #1abc9c;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 15px 15px 15px 0px;
 }
 
-.input.inline label {
-	display: inline;
-	font-size: 10;
+.submitButton {
+  /* .signup-form input[type="submitButton"] { */
+  position: relative;
+  display: block;
+  padding: 19px 39px 19px 39px;
+  color: #fff;
+  margin: 0;
+  background: #1abc9c;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  border: 1px solid #16a085;
+  border-width: 3px;
 }
-
-.input input {
-	font: inherit;
-	width: 100%;
-	padding: 6px 12px;
-	margin-left: 10px;
-	margin-right: -12px;
-
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-}
-.input.inline input {
-	width: 40px;
-}
-.input input:focus {
-	outline: none;
-	border: 1px solid #1eecad;
-	background-color: #eee;
-}
-.input select {
-	border: 1px solid #ccc;
-	font: inherit;
-	margin-left: 10px;
-}
-.hobbies button {
-	color: black;
-	padding: 6px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	font: inherit;
-	cursor: pointer;
-}
-
-.hobbies button:hover,
-.hobbies button:active {
-	background-color: #8d4288;
-}
-
-.hobbies input {
-	width: 90%;
-}
-
-.submit button {
-	margin-top: 10px;
+.submitButton:hover {
+  /* .signup-form input[type="submitButton"]:hover { */
+  background: #109177;
 }
 </style>

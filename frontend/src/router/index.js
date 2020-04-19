@@ -8,8 +8,6 @@ import Stocks from '@/components/stocks/Stocks.vue';
 import Signup from '@/components/Auth/signup.vue';
 import DashboardPage from '@/components/dashboard/dashboard.vue';
 import Login from '@/components/Auth/login.vue';
-import AlternateLogin from '@/components/Auth/alternatelogin.vue';
-import AlternateSignup from '@/components/Auth/alternatesignup.vue';
 import Watchlist from '../components/watchlist/Watchlist.vue';
 
 Vue.use(Router);
@@ -38,14 +36,14 @@ const routes = [
 	{
 		path: '/signup',
 		name: 'Signup',
-		component: AlternateSignup,
+		component: Signup,
 		// component: Signup,
 	},
 	{
 		path: '/login',
 		name: 'Login',
 		// component: Login,
-		component: AlternateLogin,
+		component: Login,
 	},
 	{
 		path: '/dashboard',
