@@ -22,7 +22,7 @@
           <div class="buttons">
             <li v-if="!auth">
               <router-link to="/signup" class="button is-primary">
-                <Strong>Sign up</Strong>
+                <Strong>Sign Up</Strong>
               </router-link>
             </li>
             <li v-if="!auth">

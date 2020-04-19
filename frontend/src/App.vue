@@ -32,7 +32,7 @@
             </li>
             <li v-if="!auth">
               <router-link to="/signup" class="button is-primary">
-                <Strong>Sign up</Strong>
+                <Strong>Sign Up</Strong>
               </router-link>
             </li>
             <li v-if="!auth">
@@ -76,33 +76,33 @@ export default {
 @import 'mq'
 
 .navbar
-	background-color: #383838
+  background-color: #383838
 .navbar-start a
-	color: #1EECAD
-	font-weight: bold
-	font-size: 30px
+  color: #1EECAD
+  font-weight: bold
+  font-size: 30px
 
 .navbar-start
-	padding-left: 5rem
+  padding-left: 5rem
 
 .navbar-end
-	padding-right: 5rem
+  padding-right: 5rem
 .navbar-end a
-	color: #c1c1c1
-	padding: 0.5rem 1.75rem 0.5rem
+  color: #c1c1c1
+  padding: 0.5rem 1.75rem 0.5rem
 
 .footer
-	background-color: #383838
+  background-color: #383838
 
 .footer strong
-	color: #1EECAD
+  color: #1EECAD
 .footer p
-	color: white
+  color: white
 .logout
-	background-color: #1EECAD
-	border: none
-	font: inherit
-	color: #383838
-	cursor: pointer
-	margin-bottom: 0.5rem
+  background-color: #1EECAD
+  border: none
+  font: inherit
+  color: #383838
+  cursor: pointer
+  margin-bottom: 0.5rem
 </style>
