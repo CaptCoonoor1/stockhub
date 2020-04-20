@@ -14,6 +14,7 @@ export default new Vuex.Store({
 		userId: null,
 		user: null,
 		userAuthenticated: false,
+		emailInUse: false,
 	},
 	mutations: {
 		authUser(state, userData) {
@@ -35,6 +36,7 @@ export default new Vuex.Store({
 		// 	}, expirationTime * 1000000);
 		// },
 		signup({ commit, dispatch }, authData) {
+			this.state.emailInUse = false;
 			axios
 				.post('/register', {
 					name: authData.name,
@@ -57,7 +59,7 @@ export default new Vuex.Store({
 					commit('storeUser', authData);
 					// dispatch('setLogoutTimer', res.data.expiresIn);
 				})
-				.catch((error) => alert('Email has already been taken'));
+				.catch((error) => (this.state.emailInUse = true));
 		},
 		login({ commit, dispatch }, authData) {
 			axios
@@ -149,6 +151,9 @@ export default new Vuex.Store({
 		},
 		isAuthenticated(state) {
 			return state.userAuthenticated;
+		},
+		emailTaken(state) {
+			return state.emailInUse;
 		},
 	},
 	modules: {
