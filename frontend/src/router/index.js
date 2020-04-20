@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Home from '@/components/Home';
 import store from '@/store';
 
-import Email from '@/components/Email/Email.vue';
+import Email from '@/components/email/Email.vue';
 import Portfolio from '@/components/portfolio/Portfolio.vue';
 import Stocks from '@/components/stocks/Stocks.vue';
 import Signup from '@/components/Auth/signup.vue';
