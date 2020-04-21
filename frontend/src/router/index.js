@@ -35,7 +35,7 @@ const routes = [
 		component: Watchlist,
 	},
 	{
-		path: '/email',
+		path: '/emailverified=true',
 		name: 'Email',
 		component: Email,
 	},

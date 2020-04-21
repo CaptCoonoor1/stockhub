@@ -21,6 +21,10 @@
         style="margin: 20px"
         :class="{ negative: negativeFunds, positive: !negativeFunds }"
       >Change Percent: {{ stock.changePercent }}</p>
+      <p
+        v-if="this.quantity > 0"
+        style="margin-bottom: 20px"
+      >Total Cost: {{quantity * stock.price | currency}}</p>
       <input
         type="number"
         class="form-control pull-left"
